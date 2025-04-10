@@ -18,9 +18,6 @@
      HDLC Module Design Description
 */
 
-// `include "filename.sv" 
-
-
 program testPr_hdlc(
   in_hdlc uin_hdlc
 );
@@ -104,10 +101,36 @@ program testPr_hdlc(
   // 1. Correct data in RX buffer according to RX input. 
   // The buffer should contain up to 128 bytes
   // (this includes the 2 FCS bytes, but not the flags).
-  task VerifyCorrectDatainRX(logic [127:0][7:0] data, int Size);
-    logic [7:0] ReadData;
-  
+  task VerifyCorrectDatainRX(int size);
+      logic [7:0] ReadData;
+      automatic int i = 0;
+      automatic int j = 0;
+      automatic int cnt_one = 0;
+      while (i < size*8) begin
+        @(posedge uin_hdlc.Clk);
+        //
+        if (cnt_one < 5) begin
+          assert (ReadData[j++] == uin_hdlc.Rx)
+            $display("PASS");
+          else $error("FAIL");
+          i++;
+        end
+        //
+        if (uin_hdlc.Rx == '1) begin
+          cnt_one++;
+        end else begin
+          cnt_one = 0;
+        end
+        //
+        if (j >= 7) begin 
+          wait(uin_hdlc.Rx_Ready); //Check if needed 
+          ReadAddress(3'h3, ReadData);
+          j = 0;
+        end
+      end
+
   endtask
+
 
   /****************************************************************************
    *                                                                          *
@@ -292,6 +315,8 @@ program testPr_hdlc(
     repeat(8)
       @(posedge uin_hdlc.Clk);
 
+    VerifyCorrectDatainRX(Size);
+    
     if(Abort)
       VerifyAbortReceive(ReceiveData, Size);
     else if(Overflow)
@@ -301,10 +326,6 @@ program testPr_hdlc(
 
     #5000ns;
   endtask
-
-  task trasnmit();
-    #5000ns;
-  endtask;
 
   task GenerateFCSBytes(logic [127:0][7:0] data, int size, output logic[15:0] FCSBytes);
     logic [23:0] CheckReg;
@@ -326,6 +347,5 @@ program testPr_hdlc(
     end
     FCSBytes = CheckReg;
   endtask
-
 
 endprogram

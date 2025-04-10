@@ -1,3 +1,17 @@
+# vsim -assertdebug -c -voptargs="+acc" test_hdlc bind_hdlc -do "log -r *; run -all; exit" 
+# Start time: 19:55:43 on Apr 10,2025
+# ** Note: (vsim-3812) Design is being optimized...
+# ** Warning: ../rtl/TxFCS.sv(13): (vopt-13314) Defaulting port 'DataBuff' kind to 'var' rather than 'wire' due to default compile option setting of -svinputport=relaxed.
+# ** Note: (vopt-143) Recognized 1 FSM in module "TxFCS(fast)".
+# ** Note: (vopt-143) Recognized 1 FSM in module "RxBuff(fast)".
+# ** Note: (vopt-143) Recognized 1 FSM in module "TxController(fast)".
+# ** Note: (vopt-143) Recognized 1 FSM in module "RxController(fast)".
+# ** Note: (vopt-143) Recognized 1 FSM in module "TxBuff(fast)".
+# ** Warning: ./test_hdlc.sv(45): (vopt-2685) [TFMPC] - Too few port connections for 'u_dut'.  Expected 13, found 10.
+# ** Warning: ./test_hdlc.sv(45): (vopt-2718) [TFMPC] - Missing connection for port 'Tx_Done'.
+# ** Warning: ./test_hdlc.sv(45): (vopt-2718) [TFMPC] - Missing connection for port 'TxEN'.
+# ** Warning: ./test_hdlc.sv(45): (vopt-2718) [TFMPC] - Missing connection for port 'Tx'.
+# ** Note: (vsim-12126) Error and warning message counts have been restored: Errors=0, Warnings=5.
 # //  Questa Sim
 # //  Version 2021.4_2 linux Dec  4 2021
 # //
@@ -12,6 +26,42 @@
 # //  is prohibited from disclosure under the Trade Secrets Act,
 # //  18 U.S.C. Section 1905.
 # //
-# vsim.wlf opened as dataset "vsim"
-add wave -position insertpoint  \
-vsim:/test_hdlc/uin_hdlc/Clk
+# Loading sv_std.std
+# Loading work.test_hdlc(fast)
+# Loading work.in_hdlc(fast__1)
+# Loading work.Hdlc(fast)
+# Loading work.AddressIF(fast)
+# Loading work.TxController(fast)
+# Loading work.TxBuff(fast)
+# Loading work.TxFCS(fast)
+# Loading work.TxChannel(fast)
+# Loading work.RxController(fast)
+# Loading work.RxBuff(fast)
+# Loading work.RxFCS(fast)
+# Loading work.RxChannel(fast)
+# Loading work.testPr_hdlc(fast)
+# Loading work.assertions_hdlc(fast)
+# Loading work.bind_hdlc(fast)
+# log -r *
+#  run -all
+# *************************************************************
+#                    0 - Starting Test Program
+# *************************************************************
+# *************************************************************
+#                 1000 - Starting task Receive - Normal
+# *************************************************************
+# ** Error: FAIL
+#    Time: 62750 ns  Scope: test_hdlc.u_testPr.VerifyCorrectDatainRX File: ./testPr_hdlc.sv Line: 115
+# ** Error: FAIL
+#    Time: 63250 ns  Scope: test_hdlc.u_testPr.VerifyCorrectDatainRX File: ./testPr_hdlc.sv Line: 115
+# ** Error: FAIL
+#    Time: 63750 ns  Scope: test_hdlc.u_testPr.VerifyCorrectDatainRX File: ./testPr_hdlc.sv Line: 115
+# ** Error: FAIL
+#    Time: 64250 ns  Scope: test_hdlc.u_testPr.VerifyCorrectDatainRX File: ./testPr_hdlc.sv Line: 115
+# ** Error: FAIL
+#    Time: 64750 ns  Scope: test_hdlc.u_testPr.VerifyCorrectDatainRX File: ./testPr_hdlc.sv Line: 115
+# Break key hit
+# Simulation stop requested.
+#  exit
+# End time: 20:06:57 on Apr 10,2025, Elapsed time: 0:11:14
+# Errors: 5, Warnings: 5
