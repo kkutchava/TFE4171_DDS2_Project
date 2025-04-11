@@ -1,5 +1,5 @@
 # vsim -assertdebug -c -voptargs="+acc" test_hdlc bind_hdlc -do "log -r *; run -all; exit" 
-# Start time: 19:55:43 on Apr 10,2025
+# Start time: 10:09:31 on Apr 11,2025
 # ** Note: (vsim-3812) Design is being optimized...
 # ** Warning: ../rtl/TxFCS.sv(13): (vopt-13314) Defaulting port 'DataBuff' kind to 'var' rather than 'wire' due to default compile option setting of -svinputport=relaxed.
 # ** Note: (vopt-143) Recognized 1 FSM in module "TxFCS(fast)".
@@ -50,18 +50,18 @@
 # *************************************************************
 #                 1000 - Starting task Receive - Normal
 # *************************************************************
-# ** Error: FAIL
+# ** Error: FAIL. Rx is 1 read data x
 #    Time: 62750 ns  Scope: test_hdlc.u_testPr.VerifyCorrectDatainRX File: ./testPr_hdlc.sv Line: 115
-# ** Error: FAIL
+# ** Error: FAIL. Rx is 1 read data x
 #    Time: 63250 ns  Scope: test_hdlc.u_testPr.VerifyCorrectDatainRX File: ./testPr_hdlc.sv Line: 115
-# ** Error: FAIL
+# ** Error: FAIL. Rx is 1 read data x
 #    Time: 63750 ns  Scope: test_hdlc.u_testPr.VerifyCorrectDatainRX File: ./testPr_hdlc.sv Line: 115
-# ** Error: FAIL
+# ** Error: FAIL. Rx is 1 read data x
 #    Time: 64250 ns  Scope: test_hdlc.u_testPr.VerifyCorrectDatainRX File: ./testPr_hdlc.sv Line: 115
-# ** Error: FAIL
+# ** Error: FAIL. Rx is 1 read data x
 #    Time: 64750 ns  Scope: test_hdlc.u_testPr.VerifyCorrectDatainRX File: ./testPr_hdlc.sv Line: 115
 # Break key hit
 # Simulation stop requested.
 #  exit
-# End time: 20:06:57 on Apr 10,2025, Elapsed time: 0:11:14
+# End time: 10:11:35 on Apr 11,2025, Elapsed time: 0:02:04
 # Errors: 5, Warnings: 5

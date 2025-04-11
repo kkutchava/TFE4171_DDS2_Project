@@ -109,10 +109,15 @@ program testPr_hdlc(
       while (i < size*8) begin
         @(posedge uin_hdlc.Clk);
         //
+        if (j >= 7) begin 
+          wait(uin_hdlc.Rx_Ready);
+          ReadAddress(3'h3, ReadData);
+          j = 0;
+        end
         if (cnt_one < 5) begin
           assert (ReadData[j++] == uin_hdlc.Rx)
             $display("PASS");
-          else $error("FAIL");
+          else $error("FAIL. Rx is %h read data %h", uin_hdlc.Rx, ReadData[j]);
           i++;
         end
         //
@@ -120,12 +125,6 @@ program testPr_hdlc(
           cnt_one++;
         end else begin
           cnt_one = 0;
-        end
-        //
-        if (j >= 7) begin 
-          wait(uin_hdlc.Rx_Ready); //Check if needed 
-          ReadAddress(3'h3, ReadData);
-          j = 0;
         end
       end
 
