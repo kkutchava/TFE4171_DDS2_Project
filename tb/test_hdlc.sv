@@ -51,6 +51,10 @@ module test_hdlc ();
     .ReadEnable  (uin_hdlc.ReadEnable),
     .DataIn      (uin_hdlc.DataIn),
     .DataOut     (uin_hdlc.DataOut),
+    // TX
+    .Tx          (uin_hdlc.Tx),
+    .TxEN        (uin_hdlc.TxEN),
+    .Tx_Done     (uin_hdlc.Tx_Done),
     // RX
     .Rx          (uin_hdlc.Rx),
     .RxEN        (uin_hdlc.RxEN),

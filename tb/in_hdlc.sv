@@ -22,6 +22,7 @@ interface in_hdlc ();
   // TX
   logic Tx;
   logic TxEN;
+  logic Tx_Done;
 
   // RX
   logic Rx;

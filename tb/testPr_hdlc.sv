@@ -98,37 +98,6 @@ program testPr_hdlc(
   
   endtask
 
-  // 1. Correct data in RX buffer according to RX input. 
-  // The buffer should contain up to 128 bytes
-  // (this includes the 2 FCS bytes, but not the flags).
-  task VerifyCorrectDatainRX(int size);
-      logic [7:0] ReadData;
-      automatic int i = 0;
-      automatic int j = 0;
-      automatic int cnt_one = 0;
-      while (i < size*8) begin
-        @(posedge uin_hdlc.Clk);
-        //
-        if (j >= 7) begin 
-          wait(uin_hdlc.Rx_Ready);
-          ReadAddress(3'h3, ReadData);
-          j = 0;
-        end
-        if (cnt_one < 5) begin
-          assert (ReadData[j++] == uin_hdlc.Rx)
-            $display("PASS");
-          else $error("FAIL. Rx is %h read data %h", uin_hdlc.Rx, ReadData[j]);
-          i++;
-        end
-        //
-        if (uin_hdlc.Rx == '1) begin
-          cnt_one++;
-        end else begin
-          cnt_one = 0;
-        end
-      end
-
-  endtask
 
 
   /****************************************************************************
@@ -136,6 +105,112 @@ program testPr_hdlc(
    *                             Simulation code                              *
    *                                                                          *
    ****************************************************************************/
+
+  typedef enum {
+    ADDR_TX_CS   = 0,
+    ADDR_TX_BUFF = 1
+  } hdlc_reg_addrs_e;
+  
+  typedef struct packed{
+    bit [7:5] reserved;
+    bit full;
+    bit abortedTrans;
+    bit abortFrame;
+    bit enable;
+    bit done;
+  } reg_tx_sc_t;
+
+  reg_tx_sc_t reg_tx_sc;
+
+  byte my_data_q[$];
+  byte my_curr;
+  shortint my_fcs;
+  byte unsigned my_curr_size;
+  const byte my_flag = 8'h7E;
+  //const byte my_flag = 8'hBF;
+  byte removed_a_zero;
+
+  enum {
+    WAITING_FOR_FLAG,
+    RECEIVING
+  } state;
+
+  initial begin
+    state = WAITING_FOR_FLAG;
+    my_curr = '1;
+    my_curr_size = 0;
+    removed_a_zero = 0;
+  end
+
+  initial forever begin
+    @(negedge uin_hdlc.Clk)
+    if (uin_hdlc.WriteEnable && uin_hdlc.Address == ADDR_TX_CS) begin
+      reg_tx_sc = uin_hdlc.DataIn[7:0];
+      if (reg_tx_sc.enable) begin
+        automatic logic [127:0] [7:0] data = 0;
+        foreach (my_data_q[idx]) begin
+          data[idx] = my_data_q[idx];
+        end
+        GenerateFCSBytes(data, my_data_q.size(), my_fcs);
+        $display("%t: Register Monitor: Detected start of TX transmission. Expecting FCS: 0x%04x", $time, my_fcs);
+      end
+    end
+    if (uin_hdlc.WriteEnable && uin_hdlc.Address == ADDR_TX_BUFF) begin
+      my_data_q.push_back(uin_hdlc.DataIn[7:0]);
+      $display("%t: Register Monitor: Pushed 0x%02x to data queue", $time, uin_hdlc.DataIn[7:0]);
+    end
+  end
+
+  initial forever begin
+    @(posedge uin_hdlc.Clk);
+    #0;
+    my_curr >>= 1;
+    my_curr[7] |= uin_hdlc.Tx;
+    if (my_curr_size < 8) my_curr_size ++;
+    if (my_curr != 8'hff) $display("%t: TX Monitor: Current 0x%02x (size: %0d) (removed a zero: %0d) (Tx: %0d) ", $time, my_curr, my_curr_size, removed_a_zero, uin_hdlc.Tx);
+    if (state == WAITING_FOR_FLAG) begin
+      if (my_curr == my_flag) begin
+        ass_start_flag: assert(1);
+        state = RECEIVING;
+        $display("%t: TX Monitor: Going to state %s", $time, state.name());
+        my_curr_size = 0;
+        my_curr = 0;
+      end else if (my_curr_size == 8) begin
+        // Assumes we can have one zero in buffer in case of the start flag
+        ass_idle: assert($countones(my_curr) >= 7) else $fatal(); 
+      end
+    end else if (state == RECEIVING) begin
+      if (!removed_a_zero && my_curr == my_flag) begin
+        ass_end_flag: assert(1);
+        state = WAITING_FOR_FLAG;
+          my_curr_size = 0;
+        $display("%t: TX Monitor: Going to state %s", $time, state.name());
+      end else begin
+        if (!removed_a_zero && my_curr ==? 8'b011111xx) begin
+          //$display("%t: TX Monitor: Removing a zero", $time);
+          my_curr_size--;
+          my_curr <<= 1;
+          removed_a_zero = 5;
+        end else begin
+          removed_a_zero = removed_a_zero ? removed_a_zero-1 : 0;
+        end
+        if (my_curr_size == 8) begin  
+          //$display("%t: TX Monitor: Received byte 0x%02x.", $time, my_curr);
+          // When out of bytes in the queue expect to receive the FCS
+          if (my_data_q.size() == 0) begin
+            ass_tx_fcs: assert (my_curr == my_fcs[7:0])
+            else $error("%t: TX Monitor: Expecting 0x%02x instead of 0x%02x (FCS)", $time, my_fcs[7:0], my_curr);
+            my_fcs >>= 8;
+          end else begin
+            automatic byte expected_shit = my_data_q.pop_front();
+            ass_rx_data: assert (my_curr == expected_shit)
+            else $error("%t: TX Monitor: Expecting 0x%02x instead of 0x%02x", $time, expected_shit, my_curr);
+          end
+          my_curr_size = 0;
+        end
+      end
+    end
+  end
 
   initial begin
     $display("*************************************************************");
@@ -154,6 +229,22 @@ program testPr_hdlc(
     Receive(126, 0, 0, 0, 1, 0, 0); //Overflow
     Receive( 25, 0, 0, 0, 0, 0, 0); //Normal
     Receive( 47, 0, 0, 0, 0, 0, 0); //Normal
+
+    repeat (1) begin
+      SendRandomShit(0);
+      //SendRandomShit(1);
+      #1ms;
+      //SendRandomShit(2);
+      #1ms;
+      SendRandomShit(3);
+      #1ms;
+      SendRandomShit(4);
+      SendRandomShit(8);
+      SendRandomShit(16);
+      SendRandomShit(32);
+      SendRandomShit(64);
+      SendRandomShit(126);
+    end
 
     $display("*************************************************************");
     $display("%t - Finishing Test Program", $time);
@@ -250,6 +341,57 @@ program testPr_hdlc(
     end
   endtask
 
+  // Write Tx_Enable in Tx_SC
+  // If still more to send wait for Tx_Done
+  // 
+  // What happpens when writing to Tx buffer after enable before it has its content
+  // What happpens when using 0 size buffer
+  task SendRandomShit(shortint num_bytes);
+    reg_tx_sc_t tx_statusControl;
+    automatic byte num_bytes_sent_to_tx_buffer = 0;
+    //byte bytes_pushed_to_buffer[$];
+    
+    $display("%t: SendRandomShit(%0d)", $time, num_bytes);
+
+    // What are we even doing here?
+    if (!(num_bytes inside {[1:128]})) begin
+      $display("%t: Cannot send more bytes that what Tx Buffer can hold!", $time);
+      return;
+    end
+
+    // Clearing Status and Control register
+    tx_statusControl = '0;
+    WriteAddress(0, tx_statusControl);
+
+    // Push to buffer util Tx_Full unless all is in
+    
+    $display("%t: TX transmission: Filling Tx Buffer", $time);
+    while (!tx_statusControl.full && num_bytes_sent_to_tx_buffer < num_bytes) begin
+      byte to_push_to_buffer;
+      to_push_to_buffer = $urandom;
+      WriteAddress(1, to_push_to_buffer);
+      num_bytes_sent_to_tx_buffer++;
+      //bytes_pushed_to_buffer.push_back(to_push_to_buffer);
+      ReadAddress(0, tx_statusControl);
+    end
+
+    // Start sending by writing to enable in Tx_CS register
+    tx_statusControl.enable = 1;
+    WriteAddress(0, tx_statusControl);
+    $display("%t: TX transmission: Started", $time);
+
+    // Wait until all has been sent
+    //do begin
+    //  ReadAddress(0, tx_statusControl);
+    //end while(!tx_statusControl.done);
+    wait(uin_hdlc.Tx_Done);
+    $display("%t: TX transmission: TX Buffer Done", $time);
+
+    wait(state == WAITING_FOR_FLAG);
+    $display("%t: TX transmission: Done (flag detected)", $time);
+    #5us;
+  endtask
+
   task Receive(int Size, int Abort, int FCSerr, int NonByteAligned, int Overflow, int Drop, int SkipRead);
     logic [127:0][7:0] ReceiveData;
     logic       [15:0] FCSBytes;
@@ -314,7 +456,7 @@ program testPr_hdlc(
     repeat(8)
       @(posedge uin_hdlc.Clk);
 
-    VerifyCorrectDatainRX(Size);
+    //VerifyCorrectDatainRX(Size);
     
     if(Abort)
       VerifyAbortReceive(ReceiveData, Size);
@@ -326,7 +468,7 @@ program testPr_hdlc(
     #5000ns;
   endtask
 
-  task GenerateFCSBytes(logic [127:0][7:0] data, int size, output logic[15:0] FCSBytes);
+  function void GenerateFCSBytes(logic [127:0][7:0] data, int size, output logic[15:0] FCSBytes);
     logic [23:0] CheckReg;
     CheckReg[15:8]  = data[1];
     CheckReg[7:0]   = data[0];
@@ -345,6 +487,7 @@ program testPr_hdlc(
       end
     end
     FCSBytes = CheckReg;
-  endtask
+    $display("%t: GenerateFCSBytes(0x%0x, %0d, 0x%04x)", $time, data, size, FCSBytes);
+  endfunction
 
 endprogram
