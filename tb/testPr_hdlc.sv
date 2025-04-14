@@ -209,12 +209,12 @@ program testPr_hdlc(
     my_curr >>= 1;
     my_curr[7] |= uin_hdlc.Tx;
     if (my_curr_size < 8) my_curr_size ++;
-    if (my_curr != 8'hff) $display("%t: TX Monitor: Current 0x%02x (size: %0d) (removed a zero: %0d) (Tx: %0d) ", $time, my_curr, my_curr_size, removed_a_zero, uin_hdlc.Tx);
+    //if (my_curr != 8'hff) $display("%t: TX Monitor: Current 0x%02x (size: %0d) (removed a zero: %0d) (Tx: %0d) ", $time, my_curr, my_curr_size, removed_a_zero, uin_hdlc.Tx);
     if (state == WAITING_FOR_FLAG) begin
       if (my_curr == STARTEND_FLAG) begin
         ass_start_flag: assert(1);
         state = RECEIVING;
-        $display("%t: TX Monitor: Going to state %s", $time, state.name());
+       // $display("%t: TX Monitor: Going to state %s", $time, state.name());
         my_curr_size = 0;
         my_curr = 0;
       end else if (my_curr_size == 8) begin
@@ -234,7 +234,7 @@ program testPr_hdlc(
         ass_end_flag: assert(1);
         state = WAITING_FOR_FLAG;
         my_curr_size = 0;
-        $display("%t: TX Monitor: Going to state %s", $time, state.name());
+      //  $display("%t: TX Monitor: Going to state %s", $time, state.name());
       end else begin
         if (!removed_a_zero && my_curr ==? 8'b011111xx) begin
           //$display("%t: TX Monitor: Removing a zero", $time);
