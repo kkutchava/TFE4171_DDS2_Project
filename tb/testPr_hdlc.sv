@@ -113,8 +113,6 @@ program testPr_hdlc(
   task VerifyRXstatusControlReg(logic [7:0] mask_verify, string msg);
   logic [7:0] ReadData;
 
-  wait(uin_hdlc.Rx_Ready);
-
   // Read the RX status/control register at address 0x2
   ReadAddress(3'h2, ReadData);
 
@@ -405,7 +403,7 @@ endtask
 
     // Push to buffer util Tx_Full unless all is in
     
-    $display("%t: TX transmission: Filling Tx Buffer", $time);
+    //$display("%t: TX transmission: Filling Tx Buffer", $time);
     while (!tx_statusControl.full && num_bytes_sent_to_tx_buffer < num_bytes) begin
       byte to_push_to_buffer;
       to_push_to_buffer = $urandom;
@@ -418,7 +416,7 @@ endtask
     // Start sending by writing to enable in Tx_CS register
     tx_statusControl.enable = 1;
     WriteAddress(0, tx_statusControl);
-    $display("%t: TX transmission: Started", $time);
+    //$display("%t: TX transmission: Started", $time);
 
     // Wait until all has been sent
     //do begin
@@ -554,13 +552,13 @@ endtask
     //VerifyCorrectDatainRX(Size);
     
     if(Abort) begin
-      //VerifyAbortReceive(ReceiveData, Size);
+      VerifyAbortReceive(ReceiveData, Size);
       VerifyRXstatusControlReg(MASK_RX_ABORT, MESSAGE_RX_ABORT);
     end else if(Overflow) begin
-      //VerifyOverflowReceive(ReceiveData, Size);
+      VerifyOverflowReceive(ReceiveData, Size);
       VerifyRXstatusControlReg(MASK_RX_OVERFLOW, MESSAGE_RX_OVERFLOW);
     end else if(!SkipRead) begin
-      //VerifyNormalReceive(ReceiveData, Size);
+      VerifyNormalReceive(ReceiveData, Size);
       VerifyRXstatusControlReg(MASK_RX_NORMAL, MESSAGE_RX_NORMAL);
     end
 
