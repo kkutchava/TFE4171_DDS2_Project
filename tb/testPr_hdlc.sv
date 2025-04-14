@@ -39,6 +39,9 @@ program testPr_hdlc(
   localparam logic [7:0] MASK_RX_OVERFLOW    = 8'b0001_0001;
   const string MESSAGE_RX_OVERFLOW = "RX Status/Control received overflow sequence";
 
+  //3. Correct bits set in RX status/control register after receiving frame. 
+  //Remember to check all bits. I.e. after an abort the Rx Overflow bit should be 0, unless an overflow also occurred.
+
   // VerifyAbortReceive should verify correct value in the Rx status/control
   // register, and that the Rx data buffer is zero after abort.
   task VerifyAbortReceive(logic [127:0][7:0] data, int Size);
@@ -136,21 +139,7 @@ program testPr_hdlc(
 
 
 
-  //3. Correct bits set in RX status/control register after receiving frame. 
-  //Remember to check all bits. I.e. after an abort the Rx Overflow bit should be 0, unless an overflow also occurred.
-  task VerifyRXstatusControlReg(logic [7:0] mask_verify, string msg);
-  logic [7:0] ReadData;
-
-  // Read the RX status/control register at address 0x2
-  ReadAddress(3'h2, ReadData);
-
-  // Assert the mask in the RX status/control register
-  assert ((ReadData & mask_verify) != 0)
-    $display("PASS: %s", msg);
-    else $error("FAIL: %s, Got %b", msg, ReadData);
-
-endtask
-
+  
 
   /****************************************************************************
    *                                                                          *
@@ -581,13 +570,10 @@ endtask
     
     if(Abort) begin
       VerifyAbortReceive(ReceiveData, Size);
-      VerifyRXstatusControlReg(MASK_RX_ABORT, MESSAGE_RX_ABORT);
     end else if(Overflow) begin
       VerifyOverflowReceive(ReceiveData, Size);
-      VerifyRXstatusControlReg(MASK_RX_OVERFLOW, MESSAGE_RX_OVERFLOW);
     end else if(!SkipRead) begin
       VerifyNormalReceive(ReceiveData, Size);
-      VerifyRXstatusControlReg(MASK_RX_NORMAL, MESSAGE_RX_NORMAL);
     end
 
     #5000ns;
