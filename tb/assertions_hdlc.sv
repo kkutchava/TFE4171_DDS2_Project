@@ -97,7 +97,7 @@ module assertions_hdlc (
     $display("PASS: RX_Overflow detected afrer more than 128 bytes received");
   end else begin
     $error("RX_Overflow did not go high after receiving more than 128 bytes");
-    ErrCntAssertions++; 
+    ErrCntAssertions++;
   end
 
 
