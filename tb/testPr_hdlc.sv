@@ -126,7 +126,8 @@ program testPr_hdlc(
   byte my_curr;
   shortint my_fcs;
   byte unsigned my_curr_size;
-  const byte my_flag = 8'h7E;
+  const byte STARTEND_FLAG = 8'h7E;
+  const byte ABORT_FLAG = 8'hFE;
   //const byte my_flag = 8'hBF;
   byte removed_a_zero;
 
@@ -169,7 +170,7 @@ program testPr_hdlc(
     if (my_curr_size < 8) my_curr_size ++;
     if (my_curr != 8'hff) $display("%t: TX Monitor: Current 0x%02x (size: %0d) (removed a zero: %0d) (Tx: %0d) ", $time, my_curr, my_curr_size, removed_a_zero, uin_hdlc.Tx);
     if (state == WAITING_FOR_FLAG) begin
-      if (my_curr == my_flag) begin
+      if (my_curr == STARTEND_FLAG) begin
         ass_start_flag: assert(1);
         state = RECEIVING;
         $display("%t: TX Monitor: Going to state %s", $time, state.name());
@@ -180,10 +181,18 @@ program testPr_hdlc(
         ass_idle: assert($countones(my_curr) >= 7) else $fatal(); 
       end
     end else if (state == RECEIVING) begin
-      if (!removed_a_zero && my_curr == my_flag) begin
+      if (!removed_a_zero && my_curr == ABORT_FLAG) begin
+        $display("Reveiving flag 0x%02x tryitng to assert frame", my_curr); 
+        assert_abort_flag: assert(uin_hdlc.Tx_AbortedTrans == 1) $display("ABORT FLAG IS ASSERTED CORRECTLY"); 
+          else $error("%t: TX Monitor: Current 0x%02x (size: %0d) (removed a zero: %0d) (Tx: %0d) ", $time, my_curr, my_curr_size, removed_a_zero, uin_hdlc.Tx);
+        state = WAITING_FOR_FLAG;
+        my_curr_size = 0;
+        $display("%t: TX Monitor: Going to state %s", $time, state.name());
+      end 
+      else if (!removed_a_zero && my_curr == STARTEND_FLAG) begin
         ass_end_flag: assert(1);
         state = WAITING_FOR_FLAG;
-          my_curr_size = 0;
+        my_curr_size = 0;
         $display("%t: TX Monitor: Going to state %s", $time, state.name());
       end else begin
         if (!removed_a_zero && my_curr ==? 8'b011111xx) begin
@@ -197,7 +206,7 @@ program testPr_hdlc(
         if (my_curr_size == 8) begin  
           //$display("%t: TX Monitor: Received byte 0x%02x.", $time, my_curr);
           // When out of bytes in the queue expect to receive the FCS
-          if (my_data_q.size() == 0) begin
+          if (my_data_q.size() == 0 && reg_tx_sc.enable) begin
             ass_tx_fcs: assert (my_curr == my_fcs[7:0])
             else $error("%t: TX Monitor: Expecting 0x%02x instead of 0x%02x (FCS)", $time, my_fcs[7:0], my_curr);
             my_fcs >>= 8;
@@ -242,8 +251,12 @@ program testPr_hdlc(
       SendRandomShit(8);
       SendRandomShit(16);
       SendRandomShit(32);
+      SendRandomShit(32);
+      SendRandomShit(64);
       SendRandomShit(64);
       SendRandomShit(126);
+
+      
     end
 
     $display("*************************************************************");
@@ -315,9 +328,9 @@ program testPr_hdlc(
     uin_hdlc.Rx = 1'b1;
     @(posedge uin_hdlc.Clk);
     if(flag)
-      uin_hdlc.Rx = 1'b0;
+      uin_hdlc.Rx = 1'b0; //end
     else
-      uin_hdlc.Rx = 1'b1;
+      uin_hdlc.Rx = 1'b1; //abort
   endtask
 
   task MakeRxStimulus(logic [127:0][7:0] Data, int Size);
@@ -347,6 +360,7 @@ program testPr_hdlc(
   // What happpens when writing to Tx buffer after enable before it has its content
   // What happpens when using 0 size buffer
   task SendRandomShit(shortint num_bytes);
+  logic  [7:0] ReadData;
     reg_tx_sc_t tx_statusControl;
     automatic byte num_bytes_sent_to_tx_buffer = 0;
     //byte bytes_pushed_to_buffer[$];
@@ -384,6 +398,36 @@ program testPr_hdlc(
     //do begin
     //  ReadAddress(0, tx_statusControl);
     //end while(!tx_statusControl.done);
+
+
+    repeat(num_bytes/2) @(posedge uin_hdlc.Clk); //abort in the middle
+    $display("%t: TX transmission: Sending abort after %0d number of cycles", $time, num_bytes/2);
+    
+    // Send the abort signal
+    tx_statusControl = '0;
+    tx_statusControl.abortFrame = 1;
+    tx_statusControl.enable = 0;
+    WriteAddress(0, tx_statusControl);
+    @(posedge uin_hdlc.Clk);
+    @(posedge uin_hdlc.Clk);
+    
+    ReadAddress(3'b000, ReadData);
+    ReadData = ReadData & 8'b1111_1001;
+    assert (ReadData == (8'b0000_1000 | 8'b0000_0001)) begin
+        $display("PASS: Verifying Tx_AbortedTrans in control register is correct");
+    end else begin
+        $error("FAIL: Expected Tx_sc = 0x09, Received Tx_sc = 0x%h", ReadData);
+    end
+    @(posedge uin_hdlc.Clk);
+    @(posedge uin_hdlc.Clk);
+    repeat(10) begin
+        @(posedge uin_hdlc.Clk);
+            assert (uin_hdlc.Tx == 1'b1) else begin
+                $error("FAIL: in idle now Expected Tx = 0b1");
+            end
+    end
+
+
     wait(uin_hdlc.Tx_Done);
     $display("%t: TX transmission: TX Buffer Done", $time);
 
@@ -391,6 +435,31 @@ program testPr_hdlc(
     $display("%t: TX transmission: Done (flag detected)", $time);
     #5us;
   endtask
+
+        //   logic  [7:0] ReadData;
+        // WriteAddress(3'b000, 8'b0000_0100);
+        // $display("checking Tx_AbortedTrans flag should be 1 while it is %b", uin_hdlc.Tx_AbortedTrans);
+        // @(posedge uin_hdlc.Clk);
+        // $display("checking Tx_AbortedTrans flag should be 1 while it is %b", uin_hdlc.Tx_AbortedTrans);
+        // @(posedge uin_hdlc.Clk);
+        // $display("checking Tx_AbortedTrans flag should be 1 while it is %b", uin_hdlc.Tx_AbortedTrans);
+        // ReadAddress(3'b000, ReadData);
+        // ReadData = ReadData & 8'b1111_1001;
+        // assert (ReadData == (8'b0000_1000 | 8'b0000_0001)) begin
+        //     $display("PASS: VerifyAbortTransmit:: Tx_SC correct");
+        // end else begin
+        //     $error("FAIL: VerifyAbortTransmit:: Expected Tx_SC = 0x09, Received Tx_SC = 0x%h", ReadData);
+        // end
+        // @(posedge uin_hdlc.Clk);
+        // @(posedge uin_hdlc.Clk);
+        // repeat(10) begin
+        //     @(posedge uin_hdlc.Clk);
+        //         assert (uin_hdlc.Tx == 1'b1) else begin
+        //             $error("FAIL: VerifyAbortTransmit:: Expected Tx = 0b1");
+        //             TbErrorCnt++;
+        //         end
+        // end
+       
 
   task Receive(int Size, int Abort, int FCSerr, int NonByteAligned, int Overflow, int Drop, int SkipRead);
     logic [127:0][7:0] ReceiveData;
