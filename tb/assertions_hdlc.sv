@@ -110,7 +110,7 @@ module assertions_hdlc (
     if (!Rst) begin
       byte_counter <= 8'd0;
     end else if (!Rx_ValidFrame) begin
-      byte_counter <= 8'd0; // Reset the counter when not in a valid frame
+      //byte_counter <= 8'd0; // Reset the counter when not in a valid frame
     end else if ($rose(Rx_NewByte)) begin
       byte_counter <= byte_counter + 1; // Increment the counter on each new byte
       $display("byte_counter %0d", byte_counter);
