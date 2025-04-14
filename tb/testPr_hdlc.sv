@@ -553,7 +553,7 @@ endtask
     
     if(Abort) begin
       VerifyAbortReceive(ReceiveData, Size);
-      VerifyRXstatusControlReg(MASK_RX_ABORTS, MESSAGE_RX_ABORT);
+      VerifyRXstatusControlReg(MASK_RX_ABORT, MESSAGE_RX_ABORT);
     end else if(Overflow) begin
       VerifyOverflowReceive(ReceiveData, Size);
       VerifyRXstatusControlReg(MASK_RX_OVERFLOW, MESSAGE_RX_OVERFLOW);
