@@ -113,6 +113,8 @@ program testPr_hdlc(
   task VerifyRXstatusControlReg(logic [7:0] mask_verify, string msg);
   logic [7:0] ReadData;
 
+  wait(uin_hdlc.Rx_Ready);
+
   // Read the RX status/control register at address 0x2
   ReadAddress(3'h2, ReadData);
 
