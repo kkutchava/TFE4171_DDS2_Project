@@ -79,7 +79,7 @@ module assertions_hdlc (
     $fell(Rx_ValidFrame) |=> $rose(Rx_EoF); 
 	endproperty
 
-  RX_EndOfFrame : assert property (RX_EndOfFrame) begin
+  RX_EndOfFrame_Assert : assert property (RX_EndOfFrame) begin
     $display("PASS: End Of Frame signal");
   end else begin 
     $error("End Of Frame signal did not go high after Rx_ValidFrame went low"); 
