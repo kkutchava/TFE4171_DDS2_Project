@@ -16,7 +16,8 @@ module bind_hdlc ();
     .Rx_AbortDetect   (uin_hdlc.Rx_AbortDetect),
     .Rx_AbortSignal   (uin_hdlc.Rx_AbortSignal),
     .Rx_Overflow      (uin_hdlc.Rx_Overflow),
-    .Rx_WrBuff        (uin_hdlc.Rx_WrBuff)
+    .Rx_WrBuff        (uin_hdlc.Rx_WrBuff),
+    .Rx_EoF           (uin_hdlc.Rx_EoF)
   );
 
 endmodule

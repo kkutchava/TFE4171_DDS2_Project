@@ -24,7 +24,8 @@ module assertions_hdlc (
   input  logic Rx_AbortDetect,
   input  logic Rx_AbortSignal,
   input  logic Rx_Overflow,
-  input  logic Rx_WrBuff
+  input  logic Rx_WrBuff,
+  input  logic Rx_EoF
 );
 
   initial begin
@@ -71,5 +72,24 @@ module assertions_hdlc (
     $error("AbortSignal did not go high after AbortDetect during validframe"); 
     ErrCntAssertions++; 
   end
+
+  //12. When a whole RX frame has been received, check if end of frame is generated.
+  property RX_EndOfFrame;
+    @(posedge Clk) disable iff (!Rst)
+    $fell(Rx_ValidFrame) |=> $rose(Rx_EoF); 
+	endproperty
+
+  RX_EndOfFrame : assert property (RX_EndOfFrame) begin
+    $display("PASS: End Of Frame signal");
+  end else begin 
+    $error("End Of Frame signal did not go high after Rx_ValidFrame went low"); 
+    ErrCntAssertions++; 
+  end
+
+  //13. When receiving more than 128 bytes, Rx Overflow should be asserted.
+  //property RX_Overflow;
+
+  //endproperty
+
 
 endmodule
