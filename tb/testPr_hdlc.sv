@@ -119,7 +119,7 @@ program testPr_hdlc(
   // Assert the mask in the RX status/control register
   assert ((ReadData & mask_verify) != 0)
     $display("PASS: %s", msg);
-    else $error("FAIL: %s, Got %h", msg, ReadData);
+    else $error("FAIL: %s, Got %b", msg, ReadData);
 
 endtask
 
