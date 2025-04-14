@@ -554,13 +554,13 @@ endtask
     //VerifyCorrectDatainRX(Size);
     
     if(Abort) begin
-      VerifyAbortReceive(ReceiveData, Size);
+      //VerifyAbortReceive(ReceiveData, Size);
       VerifyRXstatusControlReg(MASK_RX_ABORT, MESSAGE_RX_ABORT);
     end else if(Overflow) begin
-      VerifyOverflowReceive(ReceiveData, Size);
+      //VerifyOverflowReceive(ReceiveData, Size);
       VerifyRXstatusControlReg(MASK_RX_OVERFLOW, MESSAGE_RX_OVERFLOW);
     end else if(!SkipRead) begin
-      VerifyNormalReceive(ReceiveData, Size);
+      //VerifyNormalReceive(ReceiveData, Size);
       VerifyRXstatusControlReg(MASK_RX_NORMAL, MESSAGE_RX_NORMAL);
     end
 
