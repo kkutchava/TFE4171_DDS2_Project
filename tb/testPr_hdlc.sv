@@ -102,11 +102,11 @@ program testPr_hdlc(
   localparam logic [7:0] MASK_RX_OVERFLOW    = 8'b0001_0001;
   const string MESSAGE_RX_OVERFLOW = "RX Status/Control received overflow sequence";
   
-  localparam logic [7:0] MASK_RX_ABORTSIGNAL = 8'b0000_1000;
-  const string MESSAGE_RX_OVERFLOW = "RX Status/Control received abort sequence";
+  localparam logic [7:0] MASK_RX_ABORT = 8'b0000_1000;
+  const string MESSAGE_RX_ABORT = "RX Status/Control received abort sequence";
   
   localparam logic [7:0] MASK_RX_NORMAL  = 8'b0000_0001;
-  const string MESSAGE_RX_OVERFLOW = "RX Status/Control received normal sequence";
+  const string MESSAGE_RX_NORMAL = "RX Status/Control received normal sequence";
 
   //3. Correct bits set in RX status/control register after receiving frame. 
   //Remember to check all bits. I.e. after an abort the Rx Overflow bit should be 0, unless an overflow also occurred.
@@ -553,7 +553,7 @@ endtask
     
     if(Abort) begin
       VerifyAbortReceive(ReceiveData, Size);
-      VerifyRXstatusControlReg(MASK_RX_ABORTSIGNAL, MESSAGE_RX_ABORTSIGNAL);
+      VerifyRXstatusControlReg(MASK_RX_ABORTS, MESSAGE_RX_ABORT);
     end else if(Overflow) begin
       VerifyOverflowReceive(ReceiveData, Size);
       VerifyRXstatusControlReg(MASK_RX_OVERFLOW, MESSAGE_RX_OVERFLOW);
