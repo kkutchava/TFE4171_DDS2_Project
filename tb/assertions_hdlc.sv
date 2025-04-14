@@ -26,7 +26,8 @@ module assertions_hdlc (
   input  logic Rx_Overflow,
   input  logic Rx_WrBuff,
   input  logic Rx_EoF,
-  input  logic Rx_NewByte
+  input  logic Rx_NewByte,
+  input  logic [7:0] Rx_FrameSize
 );
 
   initial begin
@@ -101,5 +102,30 @@ module assertions_hdlc (
     ErrCntAssertions++;
   end
 
+  logic [7:0] byte_counter; // Counter to track the number of bytes received
+
+  // Update the byte counter
+  always_ff @(posedge Clk or negedge Rst) begin
+    if (!Rst) begin
+      byte_counter <= 8'd0;
+    end else if (!Rx_ValidFrame) begin
+      byte_counter <= 8'd0; // Reset the counter when not in a valid frame
+    end else if ($rose(Rx_NewByte)) begin
+      byte_counter <= byte_counter + 1; // Increment the counter on each new byte
+    end
+  end
+
+  // 14. Rx_FrameSize should equal the exact number of bytes received in a frame (max. 126 bytes).
+  property RX_FrameSize_Exact;
+    @(posedge Clk) disable iff (!Rst)
+    (Rx_ValidFrame && $rose(Rx_NewByte)) |-> (Rx_FrameSize == byte_counter);
+  endproperty
+
+  RX_FrameSize_Exact_Assert : assert property (RX_FrameSize_Exact) begin
+    $display("PASS: Rx_FrameSize matches the exact number of bytes received.");
+  end else begin
+    $error("FAIL: Rx_FrameSize does not match the exact number of bytes received. Expected: %0d, Got: %0d", byte_counter, Rx_FrameSize);
+    ErrCntAssertions++;
+  end
 
 endmodule
