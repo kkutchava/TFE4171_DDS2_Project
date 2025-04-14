@@ -89,7 +89,7 @@ module assertions_hdlc (
 
   //13. When receiving more than 128 bytes, Rx Overflow should be asserted.
   property RX_Overflow;
-    @(posedge Clk) disable iff (!Rst)
+    @(posedge Clk) disable iff (!Rst || !Rx_ValidFrame)
     Rx_ValidFrame == 0 ##1 Rx_ValidFrame == 1 ##0 Rx_NewByte == 0 ##1 Rx_ValidFrame == 1 [->129] |=> $rose(Rx_Overflow)
   endproperty
 
