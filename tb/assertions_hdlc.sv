@@ -118,7 +118,7 @@ module assertions_hdlc (
   // 14. Rx_FrameSize should equal the exact number of bytes received in a frame (max. 126 bytes).
   property RX_FrameSize_Exact;
     @(posedge Clk) disable iff (!Rst)
-    $fall(Rx_ValidFrame) |-> (Rx_FrameSize == byte_counter);
+    $fell(Rx_ValidFrame) |-> (Rx_FrameSize == byte_counter);
   endproperty
 
   RX_FrameSize_Exact_Assert : assert property (RX_FrameSize_Exact) begin
