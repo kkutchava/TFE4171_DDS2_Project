@@ -199,7 +199,7 @@ program testPr_hdlc(
     end
     if (uin_hdlc.WriteEnable && uin_hdlc.Address == ADDR_TX_BUFF) begin
       my_data_q.push_back(uin_hdlc.DataIn[7:0]);
-      $display("%t: Register Monitor: Pushed 0x%02x to data queue", $time, uin_hdlc.DataIn[7:0]);
+      //$display("%t: Register Monitor: Pushed 0x%02x to data queue", $time, uin_hdlc.DataIn[7:0]);
     end
   end
 

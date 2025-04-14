@@ -76,7 +76,7 @@ module assertions_hdlc (
   //12. When a whole RX frame has been received, check if end of frame is generated.
   property RX_EndOfFrame;
     @(posedge Clk) disable iff (!Rst)
-    $fell(Rx_ValidFrame) |=> $rose(Rx_EoF); 
+    Rx_ValidFrame == 1 ##1 Rx_ValidFrame == 0 |=> $rose(Rx_EoF);
 	endproperty
 
   RX_EndOfFrame_Assert : assert property (RX_EndOfFrame) begin
@@ -87,9 +87,17 @@ module assertions_hdlc (
   end
 
   //13. When receiving more than 128 bytes, Rx Overflow should be asserted.
-  //property RX_Overflow;
+  property RX_Overflow;
+    @(posedge Clk) disable iff (!Rst)
+    (Rx_ValidFrame == 0 ##1 Rx_ValidFrame == 1) ##0 (Rx_NewByte == 0 ##1 Rx_ValidFrame == 1)[->129] |=> $rose(Rx_Overflow)
+  endproperty
 
-  //endproperty
+  RX_Overflow_Assert : assert property (RX_Overflow) begin
+    $display("PASS: RX_Overflow detected afrer more than 128 bytes received");
+  end else begin
+    $error("RX_Overflow did not go high after receiving more than 128 bytes");
+    ErrCntAssertions++; 
+  end
 
 
 endmodule
