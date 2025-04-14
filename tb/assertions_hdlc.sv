@@ -25,7 +25,8 @@ module assertions_hdlc (
   input  logic Rx_AbortSignal,
   input  logic Rx_Overflow,
   input  logic Rx_WrBuff,
-  input  logic Rx_EoF
+  input  logic Rx_EoF,
+  input  logic Rx_NewByte
 );
 
   initial begin
