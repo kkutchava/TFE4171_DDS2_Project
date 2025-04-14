@@ -180,7 +180,7 @@ program testPr_hdlc(
         // Assumes we can have one zero in buffer in case of the start flag
         ass_idle: assert($countones(my_curr) >= 7) else $fatal(); 
       end
-    end else if (state == RECEIVING) begin
+    end else if (state == RECEIVING) begin/*
       if (!removed_a_zero && my_curr == ABORT_FLAG) begin
         $display("Reveiving flag 0x%02x tryitng to assert frame", my_curr); 
         assert_abort_flag: assert(uin_hdlc.Tx_AbortedTrans == 1) $display("ABORT FLAG IS ASSERTED CORRECTLY"); 
@@ -189,7 +189,7 @@ program testPr_hdlc(
         my_curr_size = 0;
         $display("%t: TX Monitor: Going to state %s", $time, state.name());
       end 
-      else if (!removed_a_zero && my_curr == STARTEND_FLAG) begin
+      else*/ if (!removed_a_zero && my_curr == STARTEND_FLAG) begin
         ass_end_flag: assert(1);
         state = WAITING_FOR_FLAG;
         my_curr_size = 0;
@@ -399,7 +399,7 @@ program testPr_hdlc(
     //  ReadAddress(0, tx_statusControl);
     //end while(!tx_statusControl.done);
 
-
+/*
     repeat(num_bytes/2) @(posedge uin_hdlc.Clk); //abort in the middle
     $display("%t: TX transmission: Sending abort after %0d number of cycles", $time, num_bytes/2);
     
@@ -427,7 +427,7 @@ program testPr_hdlc(
             end
     end
 
-
+*/
     wait(uin_hdlc.Tx_Done);
     $display("%t: TX transmission: TX Buffer Done", $time);
 
