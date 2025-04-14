@@ -112,13 +112,14 @@ module assertions_hdlc (
       byte_counter <= 8'd0; // Reset the counter when not in a valid frame
     end else if ($rose(Rx_NewByte)) begin
       byte_counter <= byte_counter + 1; // Increment the counter on each new byte
+      $display("byte_counter %0d", byte_counter);
     end
   end
 
   // 14. Rx_FrameSize should equal the exact number of bytes received in a frame (max. 126 bytes).
   property RX_FrameSize_Exact;
     @(posedge Clk) disable iff (!Rst)
-    $fell(Rx_ValidFrame) |-> (Rx_FrameSize == byte_counter);
+    $rose(Rx_EoF) and !Rx_FrameError |=> (Rx_FrameSize == byte_counter);
   endproperty
 
   RX_FrameSize_Exact_Assert : assert property (RX_FrameSize_Exact) begin
