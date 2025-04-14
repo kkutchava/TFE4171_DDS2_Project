@@ -27,7 +27,8 @@ module assertions_hdlc (
   input  logic Rx_WrBuff,
   input  logic Rx_EoF,
   input  logic Rx_NewByte,
-  input  logic [7:0] Rx_FrameSize
+  input  logic [7:0] Rx_FrameSize,
+  input  logic Rx_FrameError
 );
 
   initial begin
