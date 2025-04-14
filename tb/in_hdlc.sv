@@ -56,5 +56,20 @@ interface in_hdlc ();
   logic       Tx_AbortFrame;
   logic       Tx_AbortedTrans;
   logic       Tx_DataAvail;
+  logic       Tx_ValidFrame;
+  logic       Tx_WriteFCS;
+  logic       Tx_InitZero;
+  logic       Tx_StartFCS;
+  logic       Tx_RdBuff;
+  logic       Tx_NewByte;
+  logic       Tx_FCSDone;
+  logic [7:0] Tx_Data;
+  logic       Tx_Full;
+  logic [7:0] Tx_FrameSize;
+  logic [127:0][7:0] Tx_DataArray;
+  logic [7:0] Tx_DataOutBuff;
+  logic       Tx_WrBuff;
+  logic       Tx_Enable;
+  logic [7:0] Tx_DataInBuff;
 
 endinterface

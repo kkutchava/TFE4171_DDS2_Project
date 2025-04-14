@@ -1,7 +1,7 @@
 #!/bin/bash
 RED='\033[0;31m'
 NC='\033[0m'  
-rm -rf transcript 
+rm -rf transcript
 
 if ./compile.sh
 then
@@ -12,12 +12,14 @@ else
 fi
 
 printf "${RED}\nSimulating${NC}\n"
+
 if [[ "$@" =~ --gui ]]
 then
-  	echo vsim -assertdebug -voptargs="+acc" test_hdlc bind_hdlc -do "log -r *" &
+  	echo vsim -assertdebug -voptargs="+acc" -coverage test_hdlc bind_hdlc -do "log -r *"
+  	vsim -assertdebug -voptargs="+acc" -coverage test_hdlc bind_hdlc -do "log -r *"
   	exit
 else
-	if vsim -assertdebug -c -voptargs="+acc" test_hdlc bind_hdlc -do "log -r *; run -all; exit" 
+	if vsim -assertdebug -c -voptargs="+acc" -coverage test_hdlc bind_hdlc -do "log -r *; run -all; coverage report -memory -cvg -details -file coverage_rep.txt; exit"
 	then
 		echo "Success"
 	else

@@ -1,5 +1,5 @@
-# vsim -assertdebug -c -voptargs="+acc" test_hdlc bind_hdlc -do "log -r *; run -all; exit" 
-# Start time: 23:40:06 on Apr 14,2025
+# vsim -assertdebug -c -voptargs="+acc" -coverage test_hdlc bind_hdlc -do "log -r *; run -all; coverage report -memory -cvg -details -file coverage_rep.txt; exit" 
+# Start time: 01:52:03 on Apr 15,2025
 # ** Note: (vsim-3812) Design is being optimized...
 # ** Warning: ../rtl/TxFCS.sv(13): (vopt-13314) Defaulting port 'DataBuff' kind to 'var' rather than 'wire' due to default compile option setting of -svinputport=relaxed.
 # ** Note: (vopt-143) Recognized 1 FSM in module "TxFCS(fast)".
@@ -38,6 +38,7 @@
 # Loading work.testPr_hdlc(fast)
 # Loading work.assertions_hdlc(fast)
 # Loading work.bind_hdlc(fast)
+# ** Warning: (vsim-8634) Code was not compiled with coverage options.
 # log -r *
 #  run -all
 # *************************************************************
@@ -2820,7 +2821,7 @@
 #              9046500: Register Monitor: Pushed 0xc0 to data queue
 #              9048500: Register Monitor: Pushed 0xd8 to data queue
 #              9050500: Register Monitor: Pushed 0x6a to data queue
-# PASS. TX Full asserted after receiving more than 126 bytes
+# PASS. TX Full asserted after receiving more or 126 bytes
 #              9053500: GenerateFCSBytes(0x6ad8c096740c0e39596a162f3b66533c2a061ea8e9b028680fb7d6d123f5cab48e1938ac32d96284ae74c1a69af11b86770289baab81592544fcdf8e036ed837107818e34b53d0bd1e7711fd873de463864b38209060280f46c44856aefc086b41169187d1895342c685c1449ac855f71d650b027e6376d22f1c260be25e, 126, 0x1e27)
 #              9053500: Register Monitor: Detected start of TX transmission. Expecting FCS: 0x1e27
 #              9053750: TX transmission: Started
@@ -3891,15 +3892,17 @@
 # *************************************************************
 #             10100250 - Finishing Test Program
 # *************************************************************
-# ** Note: $stop    : ./testPr_hdlc.sv(275)
+# ** Note: $stop    : ./testPr_hdlc.sv(277)
 #    Time: 10100250 ns  Iteration: 1  Instance: /test_hdlc/u_testPr
-# Break in Module testPr_hdlc at ./testPr_hdlc.sv line 275
-# Stopped at ./testPr_hdlc.sv line 275
+# Break in Module testPr_hdlc at ./testPr_hdlc.sv line 277
+# Stopped at ./testPr_hdlc.sv line 277
+#  coverage report -memory -cvg -details -file coverage_rep.txt
+# ** Warning: (vsim-19053) Option '-file' has been deprecated. Please use option '-output' instead.
 #  exit
 # *********************************
 # *                               *
 # * 	Assertion Errors: 0	  *
 # *                               *
 # *********************************
-# End time: 23:40:11 on Apr 14,2025, Elapsed time: 0:00:05
-# Errors: 0, Warnings: 1
+# End time: 01:52:10 on Apr 15,2025, Elapsed time: 0:00:07
+# Errors: 0, Warnings: 3

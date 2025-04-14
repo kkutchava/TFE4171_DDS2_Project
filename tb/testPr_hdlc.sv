@@ -576,4 +576,209 @@ int abort_count = 0;
     $display("%t: GenerateFCSBytes(0x%0x, %0d, 0x%04x)", $time, data, size, FCSBytes);
   endfunction
 
+  covergroup cg @ (posedge uin_hdlc.Clk);
+        //OUTER SIGNALS:
+        //Address:
+  	    Address : coverpoint uin_hdlc.Address {
+            bins tx_sc = {0};
+            bins tx_buff = {1};
+            bins rx_sc = {2};
+            bins rx_buff = {3};
+            bins rx_len = {4};
+            ignore_bins invalid = {[5:7]};
+	      }
+        WriteEnable : coverpoint uin_hdlc.WriteEnable {
+          bins wne = {0};
+          bins we = {1};
+        }
+        ReadEnable : coverpoint uin_hdlc.ReadEnable {
+          bins rne = {0};
+          bins re = {1};
+        }
+        DataIn : coverpoint uin_hdlc.DataIn {
+          bins datain[] = {[0:127]};
+        }
+        DataOut : coverpoint uin_hdlc.DataOut {
+          bins dataout[] = {[0:127]};
+        }
+        // TX
+        Tx : coverpoint uin_hdlc.Tx {
+          bins txz = {0};
+          bins tx1 = {1};
+        }
+        TxEN : coverpoint uin_hdlc.TxEN {
+          bins txnen = {0};
+          bins txen = {1};
+        }
+        Tx_Done : coverpoint uin_hdlc.Tx_Done {
+          bins ndone = {0};
+          bins done = {1};
+        }
+        // RX
+        Rx  : coverpoint uin_hdlc.Rx {
+          bins rxz = {0};
+          bins rx1 = {1};
+        }
+        RxEN : coverpoint uin_hdlc.RxEN {
+          bins rxnen = {0};
+          bins rxen = {1};
+        }
+        Rx_Ready : coverpoint uin_hdlc.Rx_Ready {
+          bins nready = {0};
+          bins ready = {1};
+        }
+
+        //INNER SIGNALS:
+        //RX
+        Rx_ValidFrame : coverpoint uin_hdlc.Rx_ValidFrame { 
+          bins valid = {1}; 
+          bins invalid = {0}; 
+        }
+        Rx_Data : coverpoint uin_hdlc.Rx_Data { 
+          bins data[] = {[7:0]}; 
+        }
+        Rx_AbortSignal : coverpoint uin_hdlc.Rx_AbortSignal { 
+          bins abort = {1}; 
+          bins no_abort = {0}; 
+        }
+        Rx_WrBuff : coverpoint uin_hdlc.Rx_WrBuff { 
+          bins write = {1}; 
+          bins no_write = {0}; 
+        }
+        Rx_EoF : coverpoint uin_hdlc.Rx_EoF { 
+          bins eof = {1}; 
+          bins not_eof = {0}; 
+        }
+        Rx_FrameSize : coverpoint uin_hdlc.Rx_FrameSize { 
+          bins size[] = {[7:0]}; 
+        }
+        Rx_Overflow : coverpoint uin_hdlc.Rx_Overflow { 
+          bins overflow = {1}; 
+          bins no_overflow = {0}; 
+        }
+        Rx_FCSerr : coverpoint uin_hdlc.Rx_FCSerr { 
+          bins err = {1}; 
+          bins no_err = {0}; 
+        }
+        Rx_FCSen : coverpoint uin_hdlc.Rx_FCSen { 
+          bins enabled = {1}; 
+          bins disabled = {0}; 
+        }
+        Rx_DataBuffOut : coverpoint uin_hdlc.Rx_DataBuffOut { 
+          bins data[] = {[7:0]}; 
+        }
+        Rx_RdBuff : coverpoint uin_hdlc.Rx_RdBuff { 
+          bins read = {1}; 
+          bins no_read = {0}; 
+        }
+        Rx_NewByte : coverpoint uin_hdlc.Rx_NewByte { 
+          bins newbyte = {1}; 
+          bins none = {0}; 
+        }
+        Rx_StartZeroDetect : coverpoint uin_hdlc.Rx_StartZeroDetect { 
+          bins start = {1}; 
+          bins no_start = {0}; 
+        }
+        Rx_FlagDetect : coverpoint uin_hdlc.Rx_FlagDetect { 
+          bins flag = {1}; 
+          bins no_flag = {0}; 
+        }
+        Rx_AbortDetect : coverpoint uin_hdlc.Rx_AbortDetect { 
+          bins abort = {1}; 
+          bins no_abort = {0}; 
+        }
+        Rx_FrameError : coverpoint uin_hdlc.Rx_FrameError { 
+          bins error = {1}; 
+          bins no_error = {0}; 
+        }
+        Rx_Drop : coverpoint uin_hdlc.Rx_Drop { 
+          bins drop = {1}; 
+          bins keep = {0}; 
+        }
+        Rx_StartFCS : coverpoint uin_hdlc.Rx_StartFCS { 
+          bins start = {1}; 
+          bins no_start = {0}; 
+        }
+        Rx_StopFCS : coverpoint uin_hdlc.Rx_StopFCS { 
+          bins stop = {1}; 
+          bins no_stop = {0}; 
+        }
+        RxD : coverpoint uin_hdlc.RxD { 
+          bins one = {1}; 
+          bins zero = {0}; 
+        }
+        ZeroDetect : coverpoint uin_hdlc.ZeroDetect { 
+          bins detect = {1}; 
+          bins none = {0}; 
+        }
+        // TX 
+        Tx_AbortFrame : coverpoint uin_hdlc.Tx_AbortFrame { 
+          bins abort = {1}; 
+          bins no_abort = {0}; 
+        }
+        Tx_AbortedTrans : coverpoint uin_hdlc.Tx_AbortedTrans { 
+          bins aborted = {1}; 
+          bins not_aborted = {0}; 
+        }
+        Tx_DataAvail : coverpoint uin_hdlc.Tx_DataAvail { 
+          bins avail = {1}; 
+          bins not_avail = {0}; 
+        }
+        Tx_ValidFrame : coverpoint uin_hdlc.Tx_ValidFrame {
+          bins invalid = {0};
+          bins valid   = {1};
+        }
+
+        Tx_WriteFCS : coverpoint uin_hdlc.Tx_WriteFCS {
+          bins no_write = {0};
+          bins write    = {1};
+        }
+
+        Tx_InitZero : coverpoint uin_hdlc.Tx_InitZero {
+          bins no_init = {0};
+          bins init    = {1};
+        }
+        Tx_StartFCS : coverpoint uin_hdlc.Tx_StartFCS {
+          bins no_start = {0};
+          bins start    = {1};
+        }
+        Tx_RdBuff : coverpoint uin_hdlc.Tx_RdBuff {
+          bins no_read = {0};
+          bins read    = {1};
+        }
+        Tx_NewByte : coverpoint uin_hdlc.Tx_NewByte {
+          bins nob = {0};
+          bins newb  = {1};
+        }
+        Tx_FCSDone : coverpoint uin_hdlc.Tx_FCSDone {
+          bins not_done = {0};
+          bins done     = {1};
+        }
+
+        Tx_Data : coverpoint uin_hdlc.Tx_Data {
+          bins data[] = {[7:0]};
+        }
+        Tx_Full : coverpoint uin_hdlc.Tx_Full {
+          bins not_full = {0};
+          bins full     = {1};
+        }
+        Tx_FrameSize : coverpoint uin_hdlc.Tx_FrameSize {
+          bins size[] = {[7:0]};
+        }
+        Tx_DataOutBuff : coverpoint uin_hdlc.Tx_DataOutBuff {
+          bins data[] = {[7:0]};
+        }
+        Tx_WrBuff : coverpoint uin_hdlc.Tx_WrBuff {
+          bins no_write = {0};
+          bins write    = {1};
+        }
+        Tx_Enable : coverpoint uin_hdlc.Tx_Enable {
+          bins txdis = {0};
+          bins txen  = {1};
+        }
+        Tx_DataInBuff : coverpoint uin_hdlc.Tx_DataInBuff {
+          bins data[] = {[7:0]};
+        }
+  endgroup
+  cg my_cg = new();
 endprogram
