@@ -55,5 +55,6 @@ interface in_hdlc ();
   //Tx
   logic       Tx_AbortFrame;
   logic       Tx_AbortedTrans;
+  logic       Tx_DataAvail;
 
 endinterface

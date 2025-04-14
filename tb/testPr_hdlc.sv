@@ -170,31 +170,42 @@ program testPr_hdlc(
     if (my_curr_size < 8) my_curr_size ++;
     if (my_curr != 8'hff) $display("%t: TX Monitor: Current 0x%02x (size: %0d) (removed a zero: %0d) (Tx: %0d) ", $time, my_curr, my_curr_size, removed_a_zero, uin_hdlc.Tx);
     if (state == WAITING_FOR_FLAG) begin
+      //$display("INSIDE THE WAITING_FOR_FLAG");
       if (my_curr == STARTEND_FLAG) begin
-        ass_start_flag: assert(1);
+        ass_start_flag: assert(1); //5. starts of frame beh
         state = RECEIVING;
         $display("%t: TX Monitor: Going to state %s", $time, state.name());
         my_curr_size = 0;
         my_curr = 0;
       end else if (my_curr_size == 8) begin
         // Assumes we can have one zero in buffer in case of the start flag
+        //7. Idle pattern generation and checking (1111 1111 when not operating).
         ass_idle: assert($countones(my_curr) >= 7) else $fatal(); 
       end
     end else if (state == RECEIVING) begin
-      if (!removed_a_zero && my_curr == ABORT_FLAG) begin
-        $display("Reveiving flag 0x%02x tryitng to assert frame", my_curr); 
-        assert_abort_flag: assert(uin_hdlc.Tx_AbortedTrans == 1) $display("ABORT FLAG IS ASSERTED CORRECTLY"); 
+      if (!removed_a_zero && my_curr == ABORT_FLAG) begin // ABORT BEHAVIOR
+        //8. Abort pattern generation and checking (1111 1110). Remember that the 0 must be sent first
+        assert(1) $display("PASS: Abort pattern 0x%02x received after abort set in TX_SC reg", my_curr); 
+          else $error("FAIL. Expected 0xfe while received %x", my_curr); //roughly impossible if we are in this IF-statemnt
+        //9. When aborting frame during transmission, Tx AbortedTrans should be asserted.
+        assert_abort_flag: assert(uin_hdlc.Tx_AbortedTrans == 1) $display("PASS: Tx AbortedTrans is set correctly after abort"); 
           else $error("%t: TX Monitor: Current 0x%02x (size: %0d) (removed a zero: %0d) (Tx: %0d) ", $time, my_curr, my_curr_size, removed_a_zero, uin_hdlc.Tx);
         state = WAITING_FOR_FLAG;
         my_curr_size = 0;
         $display("%t: TX Monitor: Going to state %s", $time, state.name());
-      end 
-      else if (!removed_a_zero && my_curr == STARTEND_FLAG) begin
-        ass_end_flag: assert(1);
+      end else if (!removed_a_zero && my_curr == STARTEND_FLAG) begin
+        ass_end_flag: assert(1); //5. END OF FRAME BEHAVIOR
         state = WAITING_FOR_FLAG;
         my_curr_size = 0;
-        $display("%t: TX Monitor: Going to state %s", $time, state.name());
-      end else begin
+        //17. Tx Done should be asserted when the entire TX buffer has been read for transmission.
+        assert_tx_done : assert(uin_hdlc.Tx_Done) begin
+          $display("PASS. Tx_done asserted after tranmission is done");
+        end else begin
+          $error("FAIL. Tx_done is not asserted after transmission or idk");
+          //ErrCntAssertions++;
+        end
+        $display("%t: TX Monitor: Going from ENDFRAME to state %s", $time, state.name());
+      end else begin //NORMAL FLOW
         if (!removed_a_zero && my_curr ==? 8'b011111xx) begin
           //$display("%t: TX Monitor: Removing a zero", $time);
           my_curr_size--;
@@ -203,10 +214,11 @@ program testPr_hdlc(
         end else begin
           removed_a_zero = removed_a_zero ? removed_a_zero-1 : 0;
         end
-        if (my_curr_size == 8) begin  
+        if (my_curr_size == 8 && !uin_hdlc.Tx_AbortedTrans) begin  
           //$display("%t: TX Monitor: Received byte 0x%02x.", $time, my_curr);
           // When out of bytes in the queue expect to receive the FCS
           if (my_data_q.size() == 0 && reg_tx_sc.enable) begin
+            //11. CRC generation and Checking.
             ass_tx_fcs: assert (my_curr == my_fcs[7:0])
             else $error("%t: TX Monitor: Expecting 0x%02x instead of 0x%02x (FCS)", $time, my_fcs[7:0], my_curr);
             my_fcs >>= 8;
@@ -360,7 +372,7 @@ program testPr_hdlc(
   // What happpens when writing to Tx buffer after enable before it has its content
   // What happpens when using 0 size buffer
   task SendRandomShit(shortint num_bytes);
-  logic  [7:0] ReadData;
+    logic  [7:0] ReadData;
     reg_tx_sc_t tx_statusControl;
     automatic byte num_bytes_sent_to_tx_buffer = 0;
     //byte bytes_pushed_to_buffer[$];
@@ -388,45 +400,20 @@ program testPr_hdlc(
       //bytes_pushed_to_buffer.push_back(to_push_to_buffer);
       ReadAddress(0, tx_statusControl);
     end
+    //18. Tx Full should be asserted after writing 126 or more bytes to the TX buffer (overflow).
+    if (num_bytes_sent_to_tx_buffer >= 126) begin
+      ReadAddress(0, tx_statusControl);
+      tx_full_assert : assert(tx_statusControl.full) begin
+        $display("PASS. TX Full asserted after receiving more or 126 bytes");
+      end else begin
+        $error("FAIL. num_bytes_sent_to_tx_buffer is %0d Tx full in SC reg is %0d", num_bytes_sent_to_tx_buffer, tx_statusControl.full);
+      end
+    end
 
     // Start sending by writing to enable in Tx_CS register
     tx_statusControl.enable = 1;
     WriteAddress(0, tx_statusControl);
     $display("%t: TX transmission: Started", $time);
-
-    // Wait until all has been sent
-    //do begin
-    //  ReadAddress(0, tx_statusControl);
-    //end while(!tx_statusControl.done);
-
-
-    repeat(num_bytes/2) @(posedge uin_hdlc.Clk); //abort in the middle
-    $display("%t: TX transmission: Sending abort after %0d number of cycles", $time, num_bytes/2);
-    
-    // Send the abort signal
-    tx_statusControl = '0;
-    tx_statusControl.abortFrame = 1;
-    tx_statusControl.enable = 0;
-    WriteAddress(0, tx_statusControl);
-    @(posedge uin_hdlc.Clk);
-    @(posedge uin_hdlc.Clk);
-    
-    ReadAddress(3'b000, ReadData);
-    ReadData = ReadData & 8'b1111_1001;
-    assert (ReadData == (8'b0000_1000 | 8'b0000_0001)) begin
-        $display("PASS: Verifying Tx_AbortedTrans in control register is correct");
-    end else begin
-        $error("FAIL: Expected Tx_sc = 0x09, Received Tx_sc = 0x%h", ReadData);
-    end
-    @(posedge uin_hdlc.Clk);
-    @(posedge uin_hdlc.Clk);
-    repeat(10) begin
-        @(posedge uin_hdlc.Clk);
-            assert (uin_hdlc.Tx == 1'b1) else begin
-                $error("FAIL: in idle now Expected Tx = 0b1");
-            end
-    end
-
 
     wait(uin_hdlc.Tx_Done);
     $display("%t: TX transmission: TX Buffer Done", $time);
@@ -436,35 +423,57 @@ program testPr_hdlc(
     #5us;
   endtask
 
-        //   logic  [7:0] ReadData;
-        // WriteAddress(3'b000, 8'b0000_0100);
-        // $display("checking Tx_AbortedTrans flag should be 1 while it is %b", uin_hdlc.Tx_AbortedTrans);
-        // @(posedge uin_hdlc.Clk);
-        // $display("checking Tx_AbortedTrans flag should be 1 while it is %b", uin_hdlc.Tx_AbortedTrans);
-        // @(posedge uin_hdlc.Clk);
-        // $display("checking Tx_AbortedTrans flag should be 1 while it is %b", uin_hdlc.Tx_AbortedTrans);
-        // ReadAddress(3'b000, ReadData);
-        // ReadData = ReadData & 8'b1111_1001;
-        // assert (ReadData == (8'b0000_1000 | 8'b0000_0001)) begin
-        //     $display("PASS: VerifyAbortTransmit:: Tx_SC correct");
-        // end else begin
-        //     $error("FAIL: VerifyAbortTransmit:: Expected Tx_SC = 0x09, Received Tx_SC = 0x%h", ReadData);
-        // end
-        // @(posedge uin_hdlc.Clk);
-        // @(posedge uin_hdlc.Clk);
-        // repeat(10) begin
-        //     @(posedge uin_hdlc.Clk);
-        //         assert (uin_hdlc.Tx == 1'b1) else begin
-        //             $error("FAIL: VerifyAbortTransmit:: Expected Tx = 0b1");
-        //             TbErrorCnt++;
-        //         end
-        // end
-       
+int abort_count = 0;
+  initial forever begin //SENDING ABORT
+  @(posedge uin_hdlc.Clk);
+  #0;
+    if (abort_count < 3 && //limit number of aborts
+        $urandom_range(0, 99) < 2 && // ~2% probability
+        state == RECEIVING &&
+        !(!removed_a_zero && my_curr == ABORT_FLAG) &&
+        !(!removed_a_zero && my_curr == STARTEND_FLAG)
+    ) begin //NORMAL FLOW
+      logic  [7:0] ReadData;
+      reg_tx_sc_t tx_statusControl;
+      abort_count++;
+      repeat(16) @(posedge uin_hdlc.Clk); //wait for half of the frame
+      //repeat(num_bytes/2) @(posedge uin_hdlc.Clk); //abort in the middle
+      $display("%0t: TX transmission: Sending abort after %0d number of cycles", $time, 16);
+      // Send the abort signal
+      tx_statusControl = '0;
+      tx_statusControl.abortFrame = 1;
+      tx_statusControl.enable = 0; 
+      WriteAddress(0, tx_statusControl);
+      @(posedge uin_hdlc.Clk);
+      @(posedge uin_hdlc.Clk);
+      
+      ReadAddress(3'b000, ReadData);
+      my_data_q = {}; //empty the queue
+      ReadData = ReadData & 8'b1111_1001;
+      $display("read data from the tx_statusControl is %x", ReadData);
+      // asserts that TX status control register is set correctly
+      assert (ReadData == 8'b0000_1001) begin
+          $display("PASS: AbortedTrans in TX_SC (status control) register is correct");
+      end else begin
+          $error("FAIL: Expected Tx_sc = 0x09, Received Tx_sc = 0x%h", ReadData);
+      end
+      repeat(12) @(posedge uin_hdlc.Clk); // should reach other modules too not sure
+      //@(posedge uin_hdlc.Clk);
+      // repeat(10) begin
+      //     @(posedge uin_hdlc.Clk);
+      //         assert (uin_hdlc.Tx == 1'b1) else begin
+      //             $error("FAIL: in idle now Expected Tx = 0b1");
+      //         end
+      // end
+    end
+
+  end
 
   task Receive(int Size, int Abort, int FCSerr, int NonByteAligned, int Overflow, int Drop, int SkipRead);
     logic [127:0][7:0] ReceiveData;
     logic       [15:0] FCSBytes;
     logic   [2:0][7:0] OverflowData;
+    logic [7:0] rx_status_reg;
     string msg;
     if(Abort)
       msg = "- Abort";
@@ -524,16 +533,24 @@ program testPr_hdlc(
 
     repeat(8)
       @(posedge uin_hdlc.Clk);
-
-    //VerifyCorrectDatainRX(Size);
     
-    if(Abort)
+    if(Abort) begin
       VerifyAbortReceive(ReceiveData, Size);
-    else if(Overflow)
+      // ReadAddress(2, rx_status_reg);
+      // $display("ABORT: RX STATUS REG contetnt %b", rx_status_reg);
+    end
+    else if(Overflow) begin
       VerifyOverflowReceive(ReceiveData, Size);
-    else if(!SkipRead)
+      //wait(uin_hdlc.Rx_Ready);
+      // ReadAddress(2, rx_status_reg);
+      // $display("OVERFLOW: RX STATUS REG contetnt %b", rx_status_reg);
+    end
+    else if(!SkipRead) begin
       VerifyNormalReceive(ReceiveData, Size);
-
+      //wait(uin_hdlc.Rx_Ready);
+      // ReadAddress(2, rx_status_reg);
+      // $display("NORMAL: RX STATUS REG contetnt %b", rx_status_reg);
+    end
     #5000ns;
   endtask
 
