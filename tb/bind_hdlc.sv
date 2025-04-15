@@ -23,7 +23,10 @@ module bind_hdlc ();
     .Rx_FCSen         (uin_hdlc.Rx_FCSen),
     .Rx_FrameError    (uin_hdlc.Rx_FrameError),
     .Tx_DataAvail     (uin_hdlc.Tx_DataAvail),
-    .Tx_Done          (uin_hdlc.Tx_Done)
+    .Tx_Done          (uin_hdlc.Tx_Done),
+    .Rx_NewByte       (uin_hdlc.Rx_NewByte),
+    .Rx_FrameSize     (uin_hdlc.Rx_FrameSize),
+    .Rx_FrameError    (uin_hdlc.Rx_FrameError)
   );
 
 endmodule
