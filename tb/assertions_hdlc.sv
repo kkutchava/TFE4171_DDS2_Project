@@ -122,17 +122,6 @@ module assertions_hdlc (
     $error("FAIL: Rx_FrameSize does not match the exact number of bytes received. Expected: %0d, Got: %0d", byte_counter-2, Rx_FrameSize);
     ErrCntAssertions++;
   end
-  property RX_FrameSize_Exact;
-    @(posedge Clk) disable iff (!Rst)
-    ($rose(Rx_EoF) and !Rx_FrameError and !Rx_Overflow) |-> ##1 (Rx_FrameSize == (byte_counter-2));
-  endproperty
-
-  RX_FrameSize_Exact_Assert : assert property (RX_FrameSize_Exact) begin
-    $display("PASS: Rx_FrameSize matches the exact number of bytes received.");
-  end else begin
-    $error("FAIL: Rx_FrameSize does not match the exact number of bytes received. Expected: %0d, Got: %0d", byte_counter-2, Rx_FrameSize);
-    ErrCntAssertions++;
-  end
 
   //15. Rx Ready should indicate byte(s) in RX buffer is(are) ready to be read.
   property RX_Ready;

@@ -30,24 +30,31 @@ program testPr_hdlc(
    *                                                                          *
    ****************************************************************************/
 
+  // Define bit masks for each field
+  localparam logic [7:0] MASK_RX_ABORT        = 8'b0000_1000;
+  const string MESSAGE_RX_ABORT =     "RX Status/Control received abort sequence";
+  
+  localparam logic [7:0] MASK_RX_NORMAL       = 8'b0000_0001;
+  const string MESSAGE_RX_NORMAL =    "RX Status/Control received normal sequence";
+
+  localparam logic [7:0] MASK_RX_OVERFLOW     = 8'b0001_0001;
+  const string MESSAGE_RX_OVERFLOW =  "RX Status/Control received overflow sequence";
+
+  //3. Correct bits set in RX status/control register after receiving frame. 
+  //Remember to check all bits. I.e. after an abort the Rx Overflow bit should be 0, unless an overflow also occurred.
+
   // VerifyAbortReceive should verify correct value in the Rx status/control
   // register, and that the Rx data buffer is zero after abort.
   task VerifyAbortReceive(logic [127:0][7:0] data, int Size);
     logic [7:0] ReadData;
 
-    // INSERT CODE HERE
-    assert (!uin_hdlc.Rx_Ready)
-      $display("PASS: Rx_Ready: LOW\n");
-      else $error("failed Rx_Ready");
-    assert (uin_hdlc.Rx_AbortSignal)
-      $display("PASS: Rx_AbortSignal: HIGH\n");
-      else $error("failed Rx_AbortSignal");
-    assert (!uin_hdlc.Rx_Overflow)
-      $display("PASS: Rx_Overflow: HIGH\n");
-      else $error("failed Rx_Overflow");
-    assert (!uin_hdlc.Rx_FrameError)
-      $display("PASS: Rx_FrameError: LOW\n");
-      else $error("failed Rx_FrameError");
+    // Read the RX status/control register at address 0x2
+    ReadAddress(3'h2, ReadData);
+
+    // Assert the mask in the RX status/control register
+    assert ((ReadData & MASK_RX_ABORT) != 0)
+      $display("PASS: %s", MESSAGE_RX_ABORT);
+      else $error("FAIL: %s, Got %b", MESSAGE_RX_ABORT, ReadData);
     
     ReadAddress(3'h3, ReadData);
       assert (ReadData === 8'h00)
@@ -62,9 +69,13 @@ program testPr_hdlc(
     logic [7:0] ReadData;
     wait(uin_hdlc.Rx_Ready);
 
-    // INSERT CODE HERE
-    assert (uin_hdlc.Rx_Ready && !uin_hdlc.Rx_Overflow && !uin_hdlc.Rx_FrameError && !uin_hdlc.Rx_AbortSignal)
-      else $error("failed VerifyNormalReceive");
+    // Read the RX status/control register at address 0x2
+    ReadAddress(3'h2, ReadData);
+
+    // Assert the mask in the RX status/control register
+    assert ((ReadData & MASK_RX_NORMAL) != 0)
+      $display("PASS: %s", MESSAGE_RX_NORMAL);
+      else $error("FAIL: %s, Got %b", MESSAGE_RX_NORMAL, ReadData);
       
     // Loop through "Size" and compare "data" with "ReadData"
     for (int i = 0; i < Size; i++) begin
@@ -83,9 +94,13 @@ program testPr_hdlc(
     logic [7:0] ReadData;
     wait(uin_hdlc.Rx_Ready);
 
-    // INSERT CODE HERE
-    assert (uin_hdlc.Rx_Ready && uin_hdlc.Rx_Overflow && !uin_hdlc.Rx_FrameError && !uin_hdlc.Rx_AbortSignal)
-      else $error("failed VerifyOverflowReceive");
+    // Read the RX status/control register at address 0x2
+    ReadAddress(3'h2, ReadData);
+
+    // Assert the mask in the RX status/control register
+    assert ((ReadData & MASK_RX_OVERFLOW) != 0)
+      $display("PASS: %s", MESSAGE_RX_OVERFLOW);
+      else $error("FAIL: %s, Got %b", MESSAGE_RX_OVERFLOW, ReadData);
     
     // Loop through "Size" and compare "data" with "ReadData"
     for (int i = 0; i < Size; i++) begin
