@@ -1,5 +1,5 @@
 # vsim -assertdebug -c -voptargs="+acc" -coverage test_hdlc bind_hdlc -do "log -r *; run -all; coverage report -memory -cvg -details -file coverage_rep.txt; exit" 
-# Start time: 01:52:03 on Apr 15,2025
+# Start time: 15:40:41 on Apr 15,2025
 # ** Note: (vsim-3812) Design is being optimized...
 # ** Warning: ../rtl/TxFCS.sv(13): (vopt-13314) Defaulting port 'DataBuff' kind to 'var' rather than 'wire' due to default compile option setting of -svinputport=relaxed.
 # ** Note: (vopt-143) Recognized 1 FSM in module "TxFCS(fast)".
@@ -3904,5 +3904,5 @@
 # * 	Assertion Errors: 0	  *
 # *                               *
 # *********************************
-# End time: 01:52:10 on Apr 15,2025, Elapsed time: 0:00:07
+# End time: 15:40:48 on Apr 15,2025, Elapsed time: 0:00:07
 # Errors: 0, Warnings: 3
