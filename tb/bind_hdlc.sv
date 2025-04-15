@@ -25,8 +25,7 @@ module bind_hdlc ();
     .Tx_DataAvail     (uin_hdlc.Tx_DataAvail),
     .Tx_Done          (uin_hdlc.Tx_Done),
     .Rx_NewByte       (uin_hdlc.Rx_NewByte),
-    .Rx_FrameSize     (uin_hdlc.Rx_FrameSize),
-    .Rx_FrameError    (uin_hdlc.Rx_FrameError)
+    .Rx_FrameSize     (uin_hdlc.Rx_FrameSize)
   );
 
 endmodule

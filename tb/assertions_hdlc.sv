@@ -33,8 +33,7 @@ module assertions_hdlc (
   input  logic Tx_DataAvail,
   input  logic Tx_Done,
   input  logic Rx_NewByte,
-  input  logic [7:0] Rx_FrameSize,
-  input  logic Rx_FrameError
+  input  logic [7:0] Rx_FrameSize
 );
 
   initial begin

@@ -187,7 +187,7 @@ program testPr_hdlc(
     if (state == WAITING_FOR_FLAG) begin
       //$display("INSIDE THE WAITING_FOR_FLAG");
       if (my_curr == STARTEND_FLAG) begin
-        ass_start_flag: assert(1); //5. starts of frame beh
+        assert_start_flag: assert(1); //5. starts of frame beh
         state = RECEIVING;
         $display("%t: TX Monitor: Going to state %s", $time, state.name());
         my_curr_size = 0;
@@ -195,7 +195,7 @@ program testPr_hdlc(
       end else if (my_curr_size == 8) begin
         // Assumes we can have one zero in buffer in case of the start flag
         //7. Idle pattern generation and checking (1111 1111 when not operating).
-        ass_idle: assert($countones(my_curr) >= 7) else $fatal(); 
+        assert_idle: assert($countones(my_curr) >= 7) else $fatal(); 
       end
     end else if (state == RECEIVING) begin
       if (!removed_a_zero && my_curr == ABORT_FLAG) begin // ABORT BEHAVIOR
@@ -209,7 +209,7 @@ program testPr_hdlc(
         my_curr_size = 0;
         $display("%t: TX Monitor: Going to state %s", $time, state.name());
       end else if (!removed_a_zero && my_curr == STARTEND_FLAG) begin
-        ass_end_flag: assert(1); //5. END OF FRAME BEHAVIOR
+        assert_end_flag: assert(1); //5. END OF FRAME BEHAVIOR
         state = WAITING_FOR_FLAG;
         my_curr_size = 0;
         //17. Tx Done should be asserted when the entire TX buffer has been read for transmission.
@@ -234,13 +234,13 @@ program testPr_hdlc(
           // When out of bytes in the queue expect to receive the FCS
           if (my_data_q.size() == 0 && reg_tx_sc.enable) begin
             //11. CRC generation and Checking.
-            ass_tx_fcs: assert (my_curr == my_fcs[7:0])
+            assert_tx_fcs: assert (my_curr == my_fcs[7:0])
             else $error("%t: TX Monitor: Expecting 0x%02x instead of 0x%02x (FCS)", $time, my_fcs[7:0], my_curr);
             my_fcs >>= 8;
           end else begin
-            automatic byte expected_shit = my_data_q.pop_front();
-            ass_rx_data: assert (my_curr == expected_shit)
-            else $error("%t: TX Monitor: Expecting 0x%02x instead of 0x%02x", $time, expected_shit, my_curr);
+            automatic byte expected_data = my_data_q.pop_front();
+            assert_rx_data: assert (my_curr == expected_data)
+            else $error("%t: TX Monitor: Expecting 0x%02x instead of 0x%02x", $time, expected_data, my_curr);
           end
           my_curr_size = 0;
         end
@@ -267,21 +267,21 @@ program testPr_hdlc(
     Receive( 47, 0, 0, 0, 0, 0, 0); //Normal
 
     repeat (1) begin
-      SendRandomShit(0);
-      //SendRandomShit(1);
+      Transmit(0);
+      //Transmit(1);
       #1ms;
-      //SendRandomShit(2);
+      //Transmit(2);
       #1ms;
-      SendRandomShit(3);
+      Transmit(3);
       #1ms;
-      SendRandomShit(4);
-      SendRandomShit(8);
-      SendRandomShit(16);
-      SendRandomShit(32);
-      SendRandomShit(32);
-      SendRandomShit(64);
-      SendRandomShit(64);
-      SendRandomShit(126);
+      Transmit(4);
+      Transmit(8);
+      Transmit(16);
+      Transmit(32);
+      Transmit(32);
+      Transmit(64);
+      Transmit(64);
+      Transmit(126);
 
       
     end
@@ -386,13 +386,13 @@ program testPr_hdlc(
   // 
   // What happpens when writing to Tx buffer after enable before it has its content
   // What happpens when using 0 size buffer
-  task SendRandomShit(shortint num_bytes);
+  task Transmit(shortint num_bytes);
     logic  [7:0] ReadData;
     reg_tx_sc_t tx_statusControl;
     automatic byte num_bytes_sent_to_tx_buffer = 0;
     //byte bytes_pushed_to_buffer[$];
     
-    $display("%t: SendRandomShit(%0d)", $time, num_bytes);
+    $display("%t: Transmit(%0d)", $time, num_bytes);
 
     // What are we even doing here?
     if (!(num_bytes inside {[1:128]})) begin

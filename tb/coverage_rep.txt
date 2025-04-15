@@ -29,11 +29,11 @@ Covergroup                                             Metric       Goal       B
         covered/total bins:                                 2          2          -                                      na                 na                 na                 na 
         missing/total bins:                                 0          2          -                                      na                 na                 na                 na 
         % Hit:                                        100.00%        100          -                                      na                 na                 na                 na 
-    Coverpoint DataIn                                  75.00%        100          -    Uncovered                         3.2KB                96B               856B        10100250 ns 
+    Coverpoint DataIn                                  75.00%        100          -    Uncovered                         3.2KB                96B               856B        10110250 ns 
         covered/total bins:                                96        128          -                                      na                 na                 na                 na 
         missing/total bins:                                32        128          -                                      na                 na                 na                 na 
         % Hit:                                         75.00%        100          -                                      na                 na                 na                 na 
-    Coverpoint DataOut                                 89.84%        100          -    Uncovered                         3.2KB                96B               856B        10100250 ns 
+    Coverpoint DataOut                                 89.84%        100          -    Uncovered                         3.2KB                96B               856B        10110250 ns 
         covered/total bins:                               115        128          -                                      na                 na                 na                 na 
         missing/total bins:                                13        128          -                                      na                 na                 na                 na 
         % Hit:                                         89.84%        100          -                                      na                 na                 na                 na 
@@ -65,7 +65,7 @@ Covergroup                                             Metric       Goal       B
         covered/total bins:                                 2          2          -                                      na                 na                 na                 na 
         missing/total bins:                                 0          2          -                                      na                 na                 na                 na 
         % Hit:                                        100.00%        100          -                                      na                 na                 na                 na 
-    Coverpoint Rx_Data                                100.00%        100          -    Covered                            340B                96B               856B        10100250 ns 
+    Coverpoint Rx_Data                                100.00%        100          -    Covered                            340B                96B               856B        10110250 ns 
         covered/total bins:                                 8          8          -                                      na                 na                 na                 na 
         missing/total bins:                                 0          8          -                                      na                 na                 na                 na 
         % Hit:                                        100.00%        100          -                                      na                 na                 na                 na 
@@ -81,7 +81,7 @@ Covergroup                                             Metric       Goal       B
         covered/total bins:                                 2          2          -                                      na                 na                 na                 na 
         missing/total bins:                                 0          2          -                                      na                 na                 na                 na 
         % Hit:                                        100.00%        100          -                                      na                 na                 na                 na 
-    Coverpoint Rx_FrameSize                            12.50%        100          -    Uncovered                          340B                96B               856B        10100250 ns 
+    Coverpoint Rx_FrameSize                            12.50%        100          -    Uncovered                          340B                96B               856B        10110250 ns 
         covered/total bins:                                 1          8          -                                      na                 na                 na                 na 
         missing/total bins:                                 7          8          -                                      na                 na                 na                 na 
         % Hit:                                         12.50%        100          -                                      na                 na                 na                 na 
@@ -97,7 +97,7 @@ Covergroup                                             Metric       Goal       B
         covered/total bins:                                 2          2          -                                      na                 na                 na                 na 
         missing/total bins:                                 0          2          -                                      na                 na                 na                 na 
         % Hit:                                        100.00%        100          -                                      na                 na                 na                 na 
-    Coverpoint Rx_DataBuffOut                         100.00%        100          -    Covered                            340B                96B               856B        10100250 ns 
+    Coverpoint Rx_DataBuffOut                         100.00%        100          -    Covered                            340B                96B               856B        10110250 ns 
         covered/total bins:                                 8          8          -                                      na                 na                 na                 na 
         missing/total bins:                                 0          8          -                                      na                 na                 na                 na 
         % Hit:                                        100.00%        100          -                                      na                 na                 na                 na 
@@ -185,7 +185,7 @@ Covergroup                                             Metric       Goal       B
         covered/total bins:                                 2          2          -                                      na                 na                 na                 na 
         missing/total bins:                                 0          2          -                                      na                 na                 na                 na 
         % Hit:                                        100.00%        100          -                                      na                 na                 na                 na 
-    Coverpoint Tx_Data                                 75.00%        100          -    Uncovered                          340B                72B               832B        10100250 ns 
+    Coverpoint Tx_Data                                 75.00%        100          -    Uncovered                          340B                72B               832B        10110250 ns 
         covered/total bins:                                 6          8          -                                      na                 na                 na                 na 
         missing/total bins:                                 2          8          -                                      na                 na                 na                 na 
         % Hit:                                         75.00%        100          -                                      na                 na                 na                 na 
@@ -193,11 +193,11 @@ Covergroup                                             Metric       Goal       B
         covered/total bins:                                 2          2          -                                      na                 na                 na                 na 
         missing/total bins:                                 0          2          -                                      na                 na                 na                 na 
         % Hit:                                        100.00%        100          -                                      na                 na                 na                 na 
-    Coverpoint Tx_FrameSize                            37.50%        100          -    Uncovered                          340B                96B               856B        10100250 ns 
+    Coverpoint Tx_FrameSize                            37.50%        100          -    Uncovered                          340B                96B               856B        10110250 ns 
         covered/total bins:                                 3          8          -                                      na                 na                 na                 na 
         missing/total bins:                                 5          8          -                                      na                 na                 na                 na 
         % Hit:                                         37.50%        100          -                                      na                 na                 na                 na 
-    Coverpoint Tx_DataOutBuff                          75.00%        100          -    Uncovered                          340B                96B               856B        10100250 ns 
+    Coverpoint Tx_DataOutBuff                          75.00%        100          -    Uncovered                          340B                96B               856B        10110250 ns 
         covered/total bins:                                 6          8          -                                      na                 na                 na                 na 
         missing/total bins:                                 2          8          -                                      na                 na                 na                 na 
         % Hit:                                         75.00%        100          -                                      na                 na                 na                 na 
@@ -209,7 +209,7 @@ Covergroup                                             Metric       Goal       B
         covered/total bins:                                 2          2          -                                      na                 na                 na                 na 
         missing/total bins:                                 0          2          -                                      na                 na                 na                 na 
         % Hit:                                        100.00%        100          -                                      na                 na                 na                 na 
-    Coverpoint Tx_DataInBuff                           75.00%        100          -    Uncovered                          340B                96B               856B        10100250 ns 
+    Coverpoint Tx_DataInBuff                           75.00%        100          -    Uncovered                          340B                96B               856B        10110250 ns 
         covered/total bins:                                 6          8          -                                      na                 na                 na                 na 
         missing/total bins:                                 2          8          -                                      na                 na                 na                 na 
         % Hit:                                         75.00%        100          -                                      na                 na                 na                 na 
@@ -222,30 +222,30 @@ Covergroup                                             Metric       Goal       B
         missing/total bins:                                 1          5          -                                      na                 na                 na                 na 
         % Hit:                                         80.00%        100          -                                      na                 na                 na                 na 
         ignore_bin invalid                                  0                     -    ZERO                                 na                 na                 na                 na 
-        bin tx_sc                                        8537          1          -    Covered                              na                 na                 na                 na 
+        bin tx_sc                                        8539          1          -    Covered                              na                 na                 na                 na 
         bin tx_buff                                       698          1          -    Covered                              na                 na                 na                 na 
-        bin rx_sc                                        5862          1          -    Covered                              na                 na                 na                 na 
+        bin rx_sc                                        5880          1          -    Covered                              na                 na                 na                 na 
         bin rx_buff                                      5104          1          -    Covered                              na                 na                 na                 na 
         bin rx_len                                          0          1          -    ZERO                                 na                 na                 na                 na 
     Coverpoint WriteEnable                            100.00%        100          -    Covered                            204B               136B               136B             250 ns 
         covered/total bins:                                 2          2          -                                      na                 na                 na                 na 
         missing/total bins:                                 0          2          -                                      na                 na                 na                 na 
         % Hit:                                        100.00%        100          -                                      na                 na                 na                 na 
-        bin wne                                         19822          1          -    Covered                              na                 na                 na                 na 
+        bin wne                                         19842          1          -    Covered                              na                 na                 na                 na 
         bin we                                            379          1          -    Covered                              na                 na                 na                 na 
     Coverpoint ReadEnable                             100.00%        100          -    Covered                            204B               136B               136B             250 ns 
         covered/total bins:                                 2          2          -                                      na                 na                 na                 na 
         missing/total bins:                                 0          2          -                                      na                 na                 na                 na 
         % Hit:                                        100.00%        100          -                                      na                 na                 na                 na 
-        bin rne                                         19341          1          -    Covered                              na                 na                 na                 na 
-        bin re                                            860          1          -    Covered                              na                 na                 na                 na 
-    Coverpoint DataIn                                  75.00%        100          -    Uncovered                         3.2KB                96B               856B        10100250 ns 
+        bin rne                                         19352          1          -    Covered                              na                 na                 na                 na 
+        bin re                                            869          1          -    Covered                              na                 na                 na                 na 
+    Coverpoint DataIn                                  75.00%        100          -    Uncovered                         3.2KB                96B               856B        10110250 ns 
         covered/total bins:                                96        128          -                                      na                 na                 na                 na 
         missing/total bins:                                32        128          -                                      na                 na                 na                 na 
         % Hit:                                         75.00%        100          -                                      na                 na                 na                 na 
-        bin datain[0]                                    2728          1          -    Covered                              na                 na                 na                 na 
+        bin datain[0]                                    2732          1          -    Covered                              na                 na                 na                 na 
         bin datain[1]                                       0          1          -    ZERO                                 na                 na                 na                 na 
-        bin datain[2]                                    5665          1          -    Covered                              na                 na                 na                 na 
+        bin datain[2]                                    5667          1          -    Covered                              na                 na                 na                 na 
         bin datain[3]                                      20          1          -    Covered                              na                 na                 na                 na 
         bin datain[4]                                      73          1          -    Covered                              na                 na                 na                 na 
         bin datain[5]                                       0          1          -    ZERO                                 na                 na                 na                 na 
@@ -275,7 +275,7 @@ Covergroup                                             Metric       Goal       B
         bin datain[29]                                      8          1          -    Covered                              na                 na                 na                 na 
         bin datain[30]                                      8          1          -    Covered                              na                 na                 na                 na 
         bin datain[31]                                      4          1          -    Covered                              na                 na                 na                 na 
-        bin datain[32]                                   8279          1          -    Covered                              na                 na                 na                 na 
+        bin datain[32]                                   8293          1          -    Covered                              na                 na                 na                 na 
         bin datain[33]                                      0          1          -    ZERO                                 na                 na                 na                 na 
         bin datain[34]                                      4          1          -    Covered                              na                 na                 na                 na 
         bin datain[35]                                      8          1          -    Covered                              na                 na                 na                 na 
@@ -371,11 +371,11 @@ Covergroup                                             Metric       Goal       B
         bin datain[125]                                     8          1          -    Covered                              na                 na                 na                 na 
         bin datain[126]                                     4          1          -    Covered                              na                 na                 na                 na 
         bin datain[127]                                     8          1          -    Covered                              na                 na                 na                 na 
-    Coverpoint DataOut                                 89.84%        100          -    Uncovered                         3.2KB                96B               856B        10100250 ns 
+    Coverpoint DataOut                                 89.84%        100          -    Uncovered                         3.2KB                96B               856B        10110250 ns 
         covered/total bins:                               115        128          -                                      na                 na                 na                 na 
         missing/total bins:                                13        128          -                                      na                 na                 na                 na 
         % Hit:                                         89.84%        100          -                                      na                 na                 na                 na 
-        bin dataout[0]                                  19687          1          -    Covered                              na                 na                 na                 na 
+        bin dataout[0]                                  19698          1          -    Covered                              na                 na                 na                 na 
         bin dataout[1]                                      8          1          -    Covered                              na                 na                 na                 na 
         bin dataout[2]                                      1          1          -    Covered                              na                 na                 na                 na 
         bin dataout[3]                                      4          1          -    Covered                              na                 na                 na                 na 
@@ -392,7 +392,7 @@ Covergroup                                             Metric       Goal       B
         bin dataout[14]                                     0          1          -    ZERO                                 na                 na                 na                 na 
         bin dataout[15]                                     1          1          -    Covered                              na                 na                 na                 na 
         bin dataout[16]                                     1          1          -    Covered                              na                 na                 na                 na 
-        bin dataout[17]                                     2          1          -    Covered                              na                 na                 na                 na 
+        bin dataout[17]                                     4          1          -    Covered                              na                 na                 na                 na 
         bin dataout[18]                                     1          1          -    Covered                              na                 na                 na                 na 
         bin dataout[19]                                     4          1          -    Covered                              na                 na                 na                 na 
         bin dataout[20]                                     0          1          -    ZERO                                 na                 na                 na                 na 
@@ -408,14 +408,14 @@ Covergroup                                             Metric       Goal       B
         bin dataout[30]                                     3          1          -    Covered                              na                 na                 na                 na 
         bin dataout[31]                                     4          1          -    Covered                              na                 na                 na                 na 
         bin dataout[32]                                     5          1          -    Covered                              na                 na                 na                 na 
-        bin dataout[33]                                     1          1          -    Covered                              na                 na                 na                 na 
+        bin dataout[33]                                     6          1          -    Covered                              na                 na                 na                 na 
         bin dataout[34]                                     1          1          -    Covered                              na                 na                 na                 na 
         bin dataout[35]                                     3          1          -    Covered                              na                 na                 na                 na 
         bin dataout[36]                                     3          1          -    Covered                              na                 na                 na                 na 
         bin dataout[37]                                     1          1          -    Covered                              na                 na                 na                 na 
         bin dataout[38]                                     0          1          -    ZERO                                 na                 na                 na                 na 
         bin dataout[39]                                     2          1          -    Covered                              na                 na                 na                 na 
-        bin dataout[40]                                     1          1          -    Covered                              na                 na                 na                 na 
+        bin dataout[40]                                     3          1          -    Covered                              na                 na                 na                 na 
         bin dataout[41]                                     1          1          -    Covered                              na                 na                 na                 na 
         bin dataout[42]                                     2          1          -    Covered                              na                 na                 na                 na 
         bin dataout[43]                                     0          1          -    ZERO                                 na                 na                 na                 na 
@@ -507,45 +507,45 @@ Covergroup                                             Metric       Goal       B
         covered/total bins:                                 2          2          -                                      na                 na                 na                 na 
         missing/total bins:                                 0          2          -                                      na                 na                 na                 na 
         % Hit:                                        100.00%        100          -                                      na                 na                 na                 na 
-        bin txz                                          1401          1          -    Covered                              na                 na                 na                 na 
-        bin tx1                                         18800          1          -    Covered                              na                 na                 na                 na 
+        bin txz                                          1396          1          -    Covered                              na                 na                 na                 na 
+        bin tx1                                         18825          1          -    Covered                              na                 na                 na                 na 
     Coverpoint TxEN                                    50.00%        100          -    Uncovered                          204B               136B               136B             250 ns 
         covered/total bins:                                 1          2          -                                      na                 na                 na                 na 
         missing/total bins:                                 1          2          -                                      na                 na                 na                 na 
         % Hit:                                         50.00%        100          -                                      na                 na                 na                 na 
         bin txnen                                           0          1          -    ZERO                                 na                 na                 na                 na 
-        bin txen                                        20201          1          -    Covered                              na                 na                 na                 na 
+        bin txen                                        20221          1          -    Covered                              na                 na                 na                 na 
     Coverpoint Tx_Done                                100.00%        100          -    Covered                            204B               136B               136B             250 ns 
         covered/total bins:                                 2          2          -                                      na                 na                 na                 na 
         missing/total bins:                                 0          2          -                                      na                 na                 na                 na 
         % Hit:                                        100.00%        100          -                                      na                 na                 na                 na 
-        bin ndone                                        6798          1          -    Covered                              na                 na                 na                 na 
-        bin done                                        13403          1          -    Covered                              na                 na                 na                 na 
+        bin ndone                                        6759          1          -    Covered                              na                 na                 na                 na 
+        bin done                                        13462          1          -    Covered                              na                 na                 na                 na 
     Coverpoint Rx                                     100.00%        100          -    Covered                            204B               136B               136B             250 ns 
         covered/total bins:                                 2          2          -                                      na                 na                 na                 na 
         missing/total bins:                                 0          2          -                                      na                 na                 na                 na 
         % Hit:                                        100.00%        100          -                                      na                 na                 na                 na 
         bin rxz                                          2921          1          -    Covered                              na                 na                 na                 na 
-        bin rx1                                         17280          1          -    Covered                              na                 na                 na                 na 
+        bin rx1                                         17300          1          -    Covered                              na                 na                 na                 na 
     Coverpoint RxEN                                    50.00%        100          -    Uncovered                          204B               136B               136B             250 ns 
         covered/total bins:                                 1          2          -                                      na                 na                 na                 na 
         missing/total bins:                                 1          2          -                                      na                 na                 na                 na 
         % Hit:                                         50.00%        100          -                                      na                 na                 na                 na 
         bin rxnen                                           0          1          -    ZERO                                 na                 na                 na                 na 
-        bin rxen                                        20201          1          -    Covered                              na                 na                 na                 na 
+        bin rxen                                        20221          1          -    Covered                              na                 na                 na                 na 
     Coverpoint Rx_Ready                               100.00%        100          -    Covered                            204B               136B               136B             250 ns 
         covered/total bins:                                 2          2          -                                      na                 na                 na                 na 
         missing/total bins:                                 0          2          -                                      na                 na                 na                 na 
         % Hit:                                        100.00%        100          -                                      na                 na                 na                 na 
-        bin nready                                      19175          1          -    Covered                              na                 na                 na                 na 
-        bin ready                                        1026          1          -    Covered                              na                 na                 na                 na 
+        bin nready                                      19181          1          -    Covered                              na                 na                 na                 na 
+        bin ready                                        1040          1          -    Covered                              na                 na                 na                 na 
     Coverpoint Rx_ValidFrame                          100.00%        100          -    Covered                            204B               136B               136B             250 ns 
         covered/total bins:                                 2          2          -                                      na                 na                 na                 na 
         missing/total bins:                                 0          2          -                                      na                 na                 na                 na 
         % Hit:                                        100.00%        100          -                                      na                 na                 na                 na 
         bin valid                                        5655          1          -    Covered                              na                 na                 na                 na 
-        bin invalid                                     14546          1          -    Covered                              na                 na                 na                 na 
-    Coverpoint Rx_Data                                100.00%        100          -    Covered                            340B                96B               856B        10100250 ns 
+        bin invalid                                     14566          1          -    Covered                              na                 na                 na                 na 
+    Coverpoint Rx_Data                                100.00%        100          -    Covered                            340B                96B               856B        10110250 ns 
         covered/total bins:                                 8          8          -                                      na                 na                 na                 na 
         missing/total bins:                                 0          8          -                                      na                 na                 na                 na 
         % Hit:                                        100.00%        100          -                                      na                 na                 na                 na 
@@ -561,21 +561,21 @@ Covergroup                                             Metric       Goal       B
         covered/total bins:                                 2          2          -                                      na                 na                 na                 na 
         missing/total bins:                                 0          2          -                                      na                 na                 na                 na 
         % Hit:                                        100.00%        100          -                                      na                 na                 na                 na 
-        bin abort                                          62          1          -    Covered                              na                 na                 na                 na 
-        bin no_abort                                    20139          1          -    Covered                              na                 na                 na                 na 
+        bin abort                                          66          1          -    Covered                              na                 na                 na                 na 
+        bin no_abort                                    20155          1          -    Covered                              na                 na                 na                 na 
     Coverpoint Rx_WrBuff                              100.00%        100          -    Covered                            204B               136B               136B             250 ns 
         covered/total bins:                                 2          2          -                                      na                 na                 na                 na 
         missing/total bins:                                 0          2          -                                      na                 na                 na                 na 
         % Hit:                                        100.00%        100          -                                      na                 na                 na                 na 
         bin write                                         687          1          -    Covered                              na                 na                 na                 na 
-        bin no_write                                    19514          1          -    Covered                              na                 na                 na                 na 
+        bin no_write                                    19534          1          -    Covered                              na                 na                 na                 na 
     Coverpoint Rx_EoF                                 100.00%        100          -    Covered                            204B               136B               136B             250 ns 
         covered/total bins:                                 2          2          -                                      na                 na                 na                 na 
         missing/total bins:                                 0          2          -                                      na                 na                 na                 na 
         % Hit:                                        100.00%        100          -                                      na                 na                 na                 na 
         bin eof                                             9          1          -    Covered                              na                 na                 na                 na 
-        bin not_eof                                     20192          1          -    Covered                              na                 na                 na                 na 
-    Coverpoint Rx_FrameSize                            12.50%        100          -    Uncovered                          340B                96B               856B        10100250 ns 
+        bin not_eof                                     20212          1          -    Covered                              na                 na                 na                 na 
+    Coverpoint Rx_FrameSize                            12.50%        100          -    Uncovered                          340B                96B               856B        10110250 ns 
         covered/total bins:                                 1          8          -                                      na                 na                 na                 na 
         missing/total bins:                                 7          8          -                                      na                 na                 na                 na 
         % Hit:                                         12.50%        100          -                                      na                 na                 na                 na 
@@ -591,25 +591,25 @@ Covergroup                                             Metric       Goal       B
         covered/total bins:                                 2          2          -                                      na                 na                 na                 na 
         missing/total bins:                                 0          2          -                                      na                 na                 na                 na 
         % Hit:                                        100.00%        100          -                                      na                 na                 na                 na 
-        bin overflow                                      548          1          -    Covered                              na                 na                 na                 na 
-        bin no_overflow                                 19653          1          -    Covered                              na                 na                 na                 na 
+        bin overflow                                      552          1          -    Covered                              na                 na                 na                 na 
+        bin no_overflow                                 19669          1          -    Covered                              na                 na                 na                 na 
     Coverpoint Rx_FCSerr                               50.00%        100          -    Uncovered                          204B               136B               136B             250 ns 
         covered/total bins:                                 1          2          -                                      na                 na                 na                 na 
         missing/total bins:                                 1          2          -                                      na                 na                 na                 na 
         % Hit:                                         50.00%        100          -                                      na                 na                 na                 na 
         bin err                                             0          1          -    ZERO                                 na                 na                 na                 na 
-        bin no_err                                      20201          1          -    Covered                              na                 na                 na                 na 
+        bin no_err                                      20221          1          -    Covered                              na                 na                 na                 na 
     Coverpoint Rx_FCSen                               100.00%        100          -    Covered                            204B               136B               136B             250 ns 
         covered/total bins:                                 2          2          -                                      na                 na                 na                 na 
         missing/total bins:                                 0          2          -                                      na                 na                 na                 na 
         % Hit:                                        100.00%        100          -                                      na                 na                 na                 na 
-        bin enabled                                     17494          1          -    Covered                              na                 na                 na                 na 
-        bin disabled                                     2707          1          -    Covered                              na                 na                 na                 na 
-    Coverpoint Rx_DataBuffOut                         100.00%        100          -    Covered                            340B                96B               856B        10100250 ns 
+        bin enabled                                     17510          1          -    Covered                              na                 na                 na                 na 
+        bin disabled                                     2711          1          -    Covered                              na                 na                 na                 na 
+    Coverpoint Rx_DataBuffOut                         100.00%        100          -    Covered                            340B                96B               856B        10110250 ns 
         covered/total bins:                                 8          8          -                                      na                 na                 na                 na 
         missing/total bins:                                 0          8          -                                      na                 na                 na                 na 
         % Hit:                                        100.00%        100          -                                      na                 na                 na                 na 
-        bin data[0]                                     19182          1          -    Covered                              na                 na                 na                 na 
+        bin data[0]                                     19188          1          -    Covered                              na                 na                 na                 na 
         bin data[1]                                         4          1          -    Covered                              na                 na                 na                 na 
         bin data[2]                                         2          1          -    Covered                              na                 na                 na                 na 
         bin data[3]                                         8          1          -    Covered                              na                 na                 na                 na 
@@ -622,135 +622,135 @@ Covergroup                                             Metric       Goal       B
         missing/total bins:                                 0          2          -                                      na                 na                 na                 na 
         % Hit:                                        100.00%        100          -                                      na                 na                 na                 na 
         bin read                                          507          1          -    Covered                              na                 na                 na                 na 
-        bin no_read                                     19694          1          -    Covered                              na                 na                 na                 na 
+        bin no_read                                     19714          1          -    Covered                              na                 na                 na                 na 
     Coverpoint Rx_NewByte                             100.00%        100          -    Covered                            204B               136B               136B             250 ns 
         covered/total bins:                                 2          2          -                                      na                 na                 na                 na 
         missing/total bins:                                 0          2          -                                      na                 na                 na                 na 
         % Hit:                                        100.00%        100          -                                      na                 na                 na                 na 
         bin newbyte                                       691          1          -    Covered                              na                 na                 na                 na 
-        bin none                                        19510          1          -    Covered                              na                 na                 na                 na 
+        bin none                                        19530          1          -    Covered                              na                 na                 na                 na 
     Coverpoint Rx_StartZeroDetect                     100.00%        100          -    Covered                            204B               136B               136B             250 ns 
         covered/total bins:                                 2          2          -                                      na                 na                 na                 na 
         missing/total bins:                                 0          2          -                                      na                 na                 na                 na 
         % Hit:                                        100.00%        100          -                                      na                 na                 na                 na 
         bin start                                           9          1          -    Covered                              na                 na                 na                 na 
-        bin no_start                                    20192          1          -    Covered                              na                 na                 na                 na 
+        bin no_start                                    20212          1          -    Covered                              na                 na                 na                 na 
     Coverpoint Rx_FlagDetect                          100.00%        100          -    Covered                            204B               136B               136B             250 ns 
         covered/total bins:                                 2          2          -                                      na                 na                 na                 na 
         missing/total bins:                                 0          2          -                                      na                 na                 na                 na 
         % Hit:                                        100.00%        100          -                                      na                 na                 na                 na 
         bin flag                                           16          1          -    Covered                              na                 na                 na                 na 
-        bin no_flag                                     20185          1          -    Covered                              na                 na                 na                 na 
+        bin no_flag                                     20205          1          -    Covered                              na                 na                 na                 na 
     Coverpoint Rx_AbortDetect                         100.00%        100          -    Covered                            204B               136B               136B             250 ns 
         covered/total bins:                                 2          2          -                                      na                 na                 na                 na 
         missing/total bins:                                 0          2          -                                      na                 na                 na                 na 
         % Hit:                                        100.00%        100          -                                      na                 na                 na                 na 
         bin abort                                           9          1          -    Covered                              na                 na                 na                 na 
-        bin no_abort                                    20192          1          -    Covered                              na                 na                 na                 na 
+        bin no_abort                                    20212          1          -    Covered                              na                 na                 na                 na 
     Coverpoint Rx_FrameError                           50.00%        100          -    Uncovered                          204B               136B               136B             250 ns 
         covered/total bins:                                 1          2          -                                      na                 na                 na                 na 
         missing/total bins:                                 1          2          -                                      na                 na                 na                 na 
         % Hit:                                         50.00%        100          -                                      na                 na                 na                 na 
         bin error                                           0          1          -    ZERO                                 na                 na                 na                 na 
-        bin no_error                                    20201          1          -    Covered                              na                 na                 na                 na 
+        bin no_error                                    20221          1          -    Covered                              na                 na                 na                 na 
     Coverpoint Rx_Drop                                 50.00%        100          -    Uncovered                          204B               136B               136B             250 ns 
         covered/total bins:                                 1          2          -                                      na                 na                 na                 na 
         missing/total bins:                                 1          2          -                                      na                 na                 na                 na 
         % Hit:                                         50.00%        100          -                                      na                 na                 na                 na 
         bin drop                                            0          1          -    ZERO                                 na                 na                 na                 na 
-        bin keep                                        20201          1          -    Covered                              na                 na                 na                 na 
+        bin keep                                        20221          1          -    Covered                              na                 na                 na                 na 
     Coverpoint Rx_StartFCS                            100.00%        100          -    Covered                            204B               136B               136B             250 ns 
         covered/total bins:                                 2          2          -                                      na                 na                 na                 na 
         missing/total bins:                                 0          2          -                                      na                 na                 na                 na 
         % Hit:                                        100.00%        100          -                                      na                 na                 na                 na 
         bin start                                           9          1          -    Covered                              na                 na                 na                 na 
-        bin no_start                                    20192          1          -    Covered                              na                 na                 na                 na 
+        bin no_start                                    20212          1          -    Covered                              na                 na                 na                 na 
     Coverpoint Rx_StopFCS                             100.00%        100          -    Covered                            204B               136B               136B             250 ns 
         covered/total bins:                                 2          2          -                                      na                 na                 na                 na 
         missing/total bins:                                 0          2          -                                      na                 na                 na                 na 
         % Hit:                                        100.00%        100          -                                      na                 na                 na                 na 
         bin stop                                            7          1          -    Covered                              na                 na                 na                 na 
-        bin no_stop                                     20194          1          -    Covered                              na                 na                 na                 na 
+        bin no_stop                                     20214          1          -    Covered                              na                 na                 na                 na 
     Coverpoint RxD                                    100.00%        100          -    Covered                            204B               136B               136B             250 ns 
         covered/total bins:                                 2          2          -                                      na                 na                 na                 na 
         missing/total bins:                                 0          2          -                                      na                 na                 na                 na 
         % Hit:                                        100.00%        100          -                                      na                 na                 na                 na 
-        bin one                                         17269          1          -    Covered                              na                 na                 na                 na 
+        bin one                                         17289          1          -    Covered                              na                 na                 na                 na 
         bin zero                                         2932          1          -    Covered                              na                 na                 na                 na 
     Coverpoint ZeroDetect                             100.00%        100          -    Covered                            204B               136B               136B             250 ns 
         covered/total bins:                                 2          2          -                                      na                 na                 na                 na 
         missing/total bins:                                 0          2          -                                      na                 na                 na                 na 
         % Hit:                                        100.00%        100          -                                      na                 na                 na                 na 
         bin detect                                         91          1          -    Covered                              na                 na                 na                 na 
-        bin none                                        20110          1          -    Covered                              na                 na                 na                 na 
+        bin none                                        20130          1          -    Covered                              na                 na                 na                 na 
     Coverpoint Tx_AbortFrame                          100.00%        100          -    Covered                            204B               136B               136B             250 ns 
         covered/total bins:                                 2          2          -                                      na                 na                 na                 na 
         missing/total bins:                                 0          2          -                                      na                 na                 na                 na 
         % Hit:                                        100.00%        100          -                                      na                 na                 na                 na 
         bin abort                                           3          1          -    Covered                              na                 na                 na                 na 
-        bin no_abort                                    20198          1          -    Covered                              na                 na                 na                 na 
+        bin no_abort                                    20218          1          -    Covered                              na                 na                 na                 na 
     Coverpoint Tx_AbortedTrans                        100.00%        100          -    Covered                            204B               136B               136B             250 ns 
         covered/total bins:                                 2          2          -                                      na                 na                 na                 na 
         missing/total bins:                                 0          2          -                                      na                 na                 na                 na 
         % Hit:                                        100.00%        100          -                                      na                 na                 na                 na 
         bin aborted                                        72          1          -    Covered                              na                 na                 na                 na 
-        bin not_aborted                                 20129          1          -    Covered                              na                 na                 na                 na 
+        bin not_aborted                                 20149          1          -    Covered                              na                 na                 na                 na 
     Coverpoint Tx_DataAvail                           100.00%        100          -    Covered                            204B               136B               136B             250 ns 
         covered/total bins:                                 2          2          -                                      na                 na                 na                 na 
         missing/total bins:                                 0          2          -                                      na                 na                 na                 na 
         % Hit:                                        100.00%        100          -                                      na                 na                 na                 na 
-        bin avail                                        5409          1          -    Covered                              na                 na                 na                 na 
-        bin not_avail                                   14792          1          -    Covered                              na                 na                 na                 na 
+        bin avail                                        5370          1          -    Covered                              na                 na                 na                 na 
+        bin not_avail                                   14851          1          -    Covered                              na                 na                 na                 na 
     Coverpoint Tx_ValidFrame                          100.00%        100          -    Covered                            204B               136B               136B             250 ns 
         covered/total bins:                                 2          2          -                                      na                 na                 na                 na 
         missing/total bins:                                 0          2          -                                      na                 na                 na                 na 
         % Hit:                                        100.00%        100          -                                      na                 na                 na                 na 
-        bin invalid                                     17509          1          -    Covered                              na                 na                 na                 na 
-        bin valid                                        2692          1          -    Covered                              na                 na                 na                 na 
+        bin invalid                                     17527          1          -    Covered                              na                 na                 na                 na 
+        bin valid                                        2694          1          -    Covered                              na                 na                 na                 na 
     Coverpoint Tx_WriteFCS                            100.00%        100          -    Covered                            204B               136B               136B             250 ns 
         covered/total bins:                                 2          2          -                                      na                 na                 na                 na 
         missing/total bins:                                 0          2          -                                      na                 na                 na                 na 
         % Hit:                                        100.00%        100          -                                      na                 na                 na                 na 
-        bin no_write                                    20165          1          -    Covered                              na                 na                 na                 na 
-        bin write                                          36          1          -    Covered                              na                 na                 na                 na 
+        bin no_write                                    20180          1          -    Covered                              na                 na                 na                 na 
+        bin write                                          41          1          -    Covered                              na                 na                 na                 na 
     Coverpoint Tx_InitZero                            100.00%        100          -    Covered                            204B               136B               136B             250 ns 
         covered/total bins:                                 2          2          -                                      na                 na                 na                 na 
         missing/total bins:                                 0          2          -                                      na                 na                 na                 na 
         % Hit:                                        100.00%        100          -                                      na                 na                 na                 na 
-        bin no_init                                     20192          1          -    Covered                              na                 na                 na                 na 
+        bin no_init                                     20212          1          -    Covered                              na                 na                 na                 na 
         bin init                                            9          1          -    Covered                              na                 na                 na                 na 
     Coverpoint Tx_StartFCS                            100.00%        100          -    Covered                            204B               136B               136B             250 ns 
         covered/total bins:                                 2          2          -                                      na                 na                 na                 na 
         missing/total bins:                                 0          2          -                                      na                 na                 na                 na 
         % Hit:                                        100.00%        100          -                                      na                 na                 na                 na 
-        bin no_start                                    20192          1          -    Covered                              na                 na                 na                 na 
+        bin no_start                                    20212          1          -    Covered                              na                 na                 na                 na 
         bin start                                           9          1          -    Covered                              na                 na                 na                 na 
     Coverpoint Tx_RdBuff                              100.00%        100          -    Covered                            204B               136B               136B             250 ns 
         covered/total bins:                                 2          2          -                                      na                 na                 na                 na 
         missing/total bins:                                 0          2          -                                      na                 na                 na                 na 
         % Hit:                                        100.00%        100          -                                      na                 na                 na                 na 
-        bin no_read                                     19891          1          -    Covered                              na                 na                 na                 na 
-        bin read                                          310          1          -    Covered                              na                 na                 na                 na 
+        bin no_read                                     19915          1          -    Covered                              na                 na                 na                 na 
+        bin read                                          306          1          -    Covered                              na                 na                 na                 na 
     Coverpoint Tx_NewByte                             100.00%        100          -    Covered                            204B               136B               136B             250 ns 
         covered/total bins:                                 2          2          -                                      na                 na                 na                 na 
         missing/total bins:                                 0          2          -                                      na                 na                 na                 na 
         % Hit:                                        100.00%        100          -                                      na                 na                 na                 na 
-        bin nob                                         19872          1          -    Covered                              na                 na                 na                 na 
-        bin newb                                          329          1          -    Covered                              na                 na                 na                 na 
+        bin nob                                         19891          1          -    Covered                              na                 na                 na                 na 
+        bin newb                                          330          1          -    Covered                              na                 na                 na                 na 
     Coverpoint Tx_FCSDone                             100.00%        100          -    Covered                            204B               136B               136B             250 ns 
         covered/total bins:                                 2          2          -                                      na                 na                 na                 na 
         missing/total bins:                                 0          2          -                                      na                 na                 na                 na 
         % Hit:                                        100.00%        100          -                                      na                 na                 na                 na 
-        bin not_done                                    17452          1          -    Covered                              na                 na                 na                 na 
-        bin done                                         2749          1          -    Covered                              na                 na                 na                 na 
-    Coverpoint Tx_Data                                 75.00%        100          -    Uncovered                          340B                72B               832B        10100250 ns 
+        bin not_done                                    17471          1          -    Covered                              na                 na                 na                 na 
+        bin done                                         2750          1          -    Covered                              na                 na                 na                 na 
+    Coverpoint Tx_Data                                 75.00%        100          -    Uncovered                          340B                72B               832B        10110250 ns 
         covered/total bins:                                 6          8          -                                      na                 na                 na                 na 
         missing/total bins:                                 2          8          -                                      na                 na                 na                 na 
         % Hit:                                         75.00%        100          -                                      na                 na                 na                 na 
-        bin data[0]                                       151          1          -    Covered                              na                 na                 na                 na 
+        bin data[0]                                       171          1          -    Covered                              na                 na                 na                 na 
         bin data[1]                                         0          1          -    ZERO                                 na                 na                 na                 na 
         bin data[2]                                        24          1          -    Covered                              na                 na                 na                 na 
-        bin data[3]                                        41          1          -    Covered                              na                 na                 na                 na 
+        bin data[3]                                        33          1          -    Covered                              na                 na                 na                 na 
         bin data[4]                                         8          1          -    Covered                              na                 na                 na                 na 
         bin data[5]                                         0          1          -    ZERO                                 na                 na                 na                 na 
         bin data[6]                                         8          1          -    Covered                              na                 na                 na                 na 
@@ -759,13 +759,13 @@ Covergroup                                             Metric       Goal       B
         covered/total bins:                                 2          2          -                                      na                 na                 na                 na 
         missing/total bins:                                 0          2          -                                      na                 na                 na                 na 
         % Hit:                                        100.00%        100          -                                      na                 na                 na                 na 
-        bin not_full                                    20195          1          -    Covered                              na                 na                 na                 na 
+        bin not_full                                    20215          1          -    Covered                              na                 na                 na                 na 
         bin full                                            6          1          -    Covered                              na                 na                 na                 na 
-    Coverpoint Tx_FrameSize                            37.50%        100          -    Uncovered                          340B                96B               856B        10100250 ns 
+    Coverpoint Tx_FrameSize                            37.50%        100          -    Uncovered                          340B                96B               856B        10110250 ns 
         covered/total bins:                                 3          8          -                                      na                 na                 na                 na 
         missing/total bins:                                 5          8          -                                      na                 na                 na                 na 
         % Hit:                                         37.50%        100          -                                      na                 na                 na                 na 
-        bin size[0]                                     10985          1          -    Covered                              na                 na                 na                 na 
+        bin size[0]                                     11003          1          -    Covered                              na                 na                 na                 na 
         bin size[1]                                         0          1          -    ZERO                                 na                 na                 na                 na 
         bin size[2]                                         0          1          -    ZERO                                 na                 na                 na                 na 
         bin size[3]                                      2078          1          -    Covered                              na                 na                 na                 na 
@@ -773,14 +773,14 @@ Covergroup                                             Metric       Goal       B
         bin size[5]                                         0          1          -    ZERO                                 na                 na                 na                 na 
         bin size[6]                                         0          1          -    ZERO                                 na                 na                 na                 na 
         bin size[7]                                         0          1          -    ZERO                                 na                 na                 na                 na 
-    Coverpoint Tx_DataOutBuff                          75.00%        100          -    Uncovered                          340B                96B               856B        10100250 ns 
+    Coverpoint Tx_DataOutBuff                          75.00%        100          -    Uncovered                          340B                96B               856B        10110250 ns 
         covered/total bins:                                 6          8          -                                      na                 na                 na                 na 
         missing/total bins:                                 2          8          -                                      na                 na                 na                 na 
         % Hit:                                         75.00%        100          -                                      na                 na                 na                 na 
-        bin data[0]                                     14783          1          -    Covered                              na                 na                 na                 na 
+        bin data[0]                                     14842          1          -    Covered                              na                 na                 na                 na 
         bin data[1]                                         0          1          -    ZERO                                 na                 na                 na                 na 
         bin data[2]                                        24          1          -    Covered                              na                 na                 na                 na 
-        bin data[3]                                        41          1          -    Covered                              na                 na                 na                 na 
+        bin data[3]                                        33          1          -    Covered                              na                 na                 na                 na 
         bin data[4]                                         8          1          -    Covered                              na                 na                 na                 na 
         bin data[5]                                         0          1          -    ZERO                                 na                 na                 na                 na 
         bin data[6]                                         8          1          -    Covered                              na                 na                 na                 na 
@@ -789,19 +789,19 @@ Covergroup                                             Metric       Goal       B
         covered/total bins:                                 2          2          -                                      na                 na                 na                 na 
         missing/total bins:                                 0          2          -                                      na                 na                 na                 na 
         % Hit:                                        100.00%        100          -                                      na                 na                 na                 na 
-        bin no_write                                    19852          1          -    Covered                              na                 na                 na                 na 
+        bin no_write                                    19872          1          -    Covered                              na                 na                 na                 na 
         bin write                                         349          1          -    Covered                              na                 na                 na                 na 
     Coverpoint Tx_Enable                              100.00%        100          -    Covered                            204B               136B               136B             250 ns 
         covered/total bins:                                 2          2          -                                      na                 na                 na                 na 
         missing/total bins:                                 0          2          -                                      na                 na                 na                 na 
         % Hit:                                        100.00%        100          -                                      na                 na                 na                 na 
-        bin txdis                                       20192          1          -    Covered                              na                 na                 na                 na 
+        bin txdis                                       20212          1          -    Covered                              na                 na                 na                 na 
         bin txen                                            9          1          -    Covered                              na                 na                 na                 na 
-    Coverpoint Tx_DataInBuff                           75.00%        100          -    Uncovered                          340B                96B               856B        10100250 ns 
+    Coverpoint Tx_DataInBuff                           75.00%        100          -    Uncovered                          340B                96B               856B        10110250 ns 
         covered/total bins:                                 6          8          -                                      na                 na                 na                 na 
         missing/total bins:                                 2          8          -                                      na                 na                 na                 na 
         % Hit:                                         75.00%        100          -                                      na                 na                 na                 na 
-        bin data[0]                                     19853          1          -    Covered                              na                 na                 na                 na 
+        bin data[0]                                     19873          1          -    Covered                              na                 na                 na                 na 
         bin data[1]                                         0          1          -    ZERO                                 na                 na                 na                 na 
         bin data[2]                                         3          1          -    Covered                              na                 na                 na                 na 
         bin data[3]                                         5          1          -    Covered                              na                 na                 na                 na 
@@ -831,11 +831,11 @@ Covergroup                                             Metric       Goal       B
         covered/total bins:                                 2          2          -                                      na                 na                 na                 na 
         missing/total bins:                                 0          2          -                                      na                 na                 na                 na 
         % Hit:                                        100.00%        100          -                                      na                 na                 na                 na 
-    Coverpoint DataIn                                  75.00%        100          -    Uncovered                         3.2KB                96B               856B        10100250 ns 
+    Coverpoint DataIn                                  75.00%        100          -    Uncovered                         3.2KB                96B               856B        10110250 ns 
         covered/total bins:                                96        128          -                                      na                 na                 na                 na 
         missing/total bins:                                32        128          -                                      na                 na                 na                 na 
         % Hit:                                         75.00%        100          -                                      na                 na                 na                 na 
-    Coverpoint DataOut                                 89.84%        100          -    Uncovered                         3.2KB                96B               856B        10100250 ns 
+    Coverpoint DataOut                                 89.84%        100          -    Uncovered                         3.2KB                96B               856B        10110250 ns 
         covered/total bins:                               115        128          -                                      na                 na                 na                 na 
         missing/total bins:                                13        128          -                                      na                 na                 na                 na 
         % Hit:                                         89.84%        100          -                                      na                 na                 na                 na 
@@ -867,7 +867,7 @@ Covergroup                                             Metric       Goal       B
         covered/total bins:                                 2          2          -                                      na                 na                 na                 na 
         missing/total bins:                                 0          2          -                                      na                 na                 na                 na 
         % Hit:                                        100.00%        100          -                                      na                 na                 na                 na 
-    Coverpoint Rx_Data                                100.00%        100          -    Covered                            340B                96B               856B        10100250 ns 
+    Coverpoint Rx_Data                                100.00%        100          -    Covered                            340B                96B               856B        10110250 ns 
         covered/total bins:                                 8          8          -                                      na                 na                 na                 na 
         missing/total bins:                                 0          8          -                                      na                 na                 na                 na 
         % Hit:                                        100.00%        100          -                                      na                 na                 na                 na 
@@ -883,7 +883,7 @@ Covergroup                                             Metric       Goal       B
         covered/total bins:                                 2          2          -                                      na                 na                 na                 na 
         missing/total bins:                                 0          2          -                                      na                 na                 na                 na 
         % Hit:                                        100.00%        100          -                                      na                 na                 na                 na 
-    Coverpoint Rx_FrameSize                            12.50%        100          -    Uncovered                          340B                96B               856B        10100250 ns 
+    Coverpoint Rx_FrameSize                            12.50%        100          -    Uncovered                          340B                96B               856B        10110250 ns 
         covered/total bins:                                 1          8          -                                      na                 na                 na                 na 
         missing/total bins:                                 7          8          -                                      na                 na                 na                 na 
         % Hit:                                         12.50%        100          -                                      na                 na                 na                 na 
@@ -899,7 +899,7 @@ Covergroup                                             Metric       Goal       B
         covered/total bins:                                 2          2          -                                      na                 na                 na                 na 
         missing/total bins:                                 0          2          -                                      na                 na                 na                 na 
         % Hit:                                        100.00%        100          -                                      na                 na                 na                 na 
-    Coverpoint Rx_DataBuffOut                         100.00%        100          -    Covered                            340B                96B               856B        10100250 ns 
+    Coverpoint Rx_DataBuffOut                         100.00%        100          -    Covered                            340B                96B               856B        10110250 ns 
         covered/total bins:                                 8          8          -                                      na                 na                 na                 na 
         missing/total bins:                                 0          8          -                                      na                 na                 na                 na 
         % Hit:                                        100.00%        100          -                                      na                 na                 na                 na 
@@ -987,7 +987,7 @@ Covergroup                                             Metric       Goal       B
         covered/total bins:                                 2          2          -                                      na                 na                 na                 na 
         missing/total bins:                                 0          2          -                                      na                 na                 na                 na 
         % Hit:                                        100.00%        100          -                                      na                 na                 na                 na 
-    Coverpoint Tx_Data                                 75.00%        100          -    Uncovered                          340B                72B               832B        10100250 ns 
+    Coverpoint Tx_Data                                 75.00%        100          -    Uncovered                          340B                72B               832B        10110250 ns 
         covered/total bins:                                 6          8          -                                      na                 na                 na                 na 
         missing/total bins:                                 2          8          -                                      na                 na                 na                 na 
         % Hit:                                         75.00%        100          -                                      na                 na                 na                 na 
@@ -995,11 +995,11 @@ Covergroup                                             Metric       Goal       B
         covered/total bins:                                 2          2          -                                      na                 na                 na                 na 
         missing/total bins:                                 0          2          -                                      na                 na                 na                 na 
         % Hit:                                        100.00%        100          -                                      na                 na                 na                 na 
-    Coverpoint Tx_FrameSize                            37.50%        100          -    Uncovered                          340B                96B               856B        10100250 ns 
+    Coverpoint Tx_FrameSize                            37.50%        100          -    Uncovered                          340B                96B               856B        10110250 ns 
         covered/total bins:                                 3          8          -                                      na                 na                 na                 na 
         missing/total bins:                                 5          8          -                                      na                 na                 na                 na 
         % Hit:                                         37.50%        100          -                                      na                 na                 na                 na 
-    Coverpoint Tx_DataOutBuff                          75.00%        100          -    Uncovered                          340B                96B               856B        10100250 ns 
+    Coverpoint Tx_DataOutBuff                          75.00%        100          -    Uncovered                          340B                96B               856B        10110250 ns 
         covered/total bins:                                 6          8          -                                      na                 na                 na                 na 
         missing/total bins:                                 2          8          -                                      na                 na                 na                 na 
         % Hit:                                         75.00%        100          -                                      na                 na                 na                 na 
@@ -1011,7 +1011,7 @@ Covergroup                                             Metric       Goal       B
         covered/total bins:                                 2          2          -                                      na                 na                 na                 na 
         missing/total bins:                                 0          2          -                                      na                 na                 na                 na 
         % Hit:                                        100.00%        100          -                                      na                 na                 na                 na 
-    Coverpoint Tx_DataInBuff                           75.00%        100          -    Uncovered                          340B                96B               856B        10100250 ns 
+    Coverpoint Tx_DataInBuff                           75.00%        100          -    Uncovered                          340B                96B               856B        10110250 ns 
         covered/total bins:                                 6          8          -                                      na                 na                 na                 na 
         missing/total bins:                                 2          8          -                                      na                 na                 na                 na 
         % Hit:                                         75.00%        100          -                                      na                 na                 na                 na 
@@ -1024,30 +1024,30 @@ Covergroup                                             Metric       Goal       B
         missing/total bins:                                 1          5          -                                      na                 na                 na                 na 
         % Hit:                                         80.00%        100          -                                      na                 na                 na                 na 
         ignore_bin invalid                                  0                     -    ZERO                                 na                 na                 na                 na 
-        bin tx_sc                                        8537          1          -    Covered                              na                 na                 na                 na 
+        bin tx_sc                                        8539          1          -    Covered                              na                 na                 na                 na 
         bin tx_buff                                       698          1          -    Covered                              na                 na                 na                 na 
-        bin rx_sc                                        5862          1          -    Covered                              na                 na                 na                 na 
+        bin rx_sc                                        5880          1          -    Covered                              na                 na                 na                 na 
         bin rx_buff                                      5104          1          -    Covered                              na                 na                 na                 na 
         bin rx_len                                          0          1          -    ZERO                                 na                 na                 na                 na 
     Coverpoint WriteEnable                            100.00%        100          -    Covered                            204B               136B               136B             250 ns 
         covered/total bins:                                 2          2          -                                      na                 na                 na                 na 
         missing/total bins:                                 0          2          -                                      na                 na                 na                 na 
         % Hit:                                        100.00%        100          -                                      na                 na                 na                 na 
-        bin wne                                         19822          1          -    Covered                              na                 na                 na                 na 
+        bin wne                                         19842          1          -    Covered                              na                 na                 na                 na 
         bin we                                            379          1          -    Covered                              na                 na                 na                 na 
     Coverpoint ReadEnable                             100.00%        100          -    Covered                            204B               136B               136B             250 ns 
         covered/total bins:                                 2          2          -                                      na                 na                 na                 na 
         missing/total bins:                                 0          2          -                                      na                 na                 na                 na 
         % Hit:                                        100.00%        100          -                                      na                 na                 na                 na 
-        bin rne                                         19341          1          -    Covered                              na                 na                 na                 na 
-        bin re                                            860          1          -    Covered                              na                 na                 na                 na 
-    Coverpoint DataIn                                  75.00%        100          -    Uncovered                         3.2KB                96B               856B        10100250 ns 
+        bin rne                                         19352          1          -    Covered                              na                 na                 na                 na 
+        bin re                                            869          1          -    Covered                              na                 na                 na                 na 
+    Coverpoint DataIn                                  75.00%        100          -    Uncovered                         3.2KB                96B               856B        10110250 ns 
         covered/total bins:                                96        128          -                                      na                 na                 na                 na 
         missing/total bins:                                32        128          -                                      na                 na                 na                 na 
         % Hit:                                         75.00%        100          -                                      na                 na                 na                 na 
-        bin datain[0]                                    2728          1          -    Covered                              na                 na                 na                 na 
+        bin datain[0]                                    2732          1          -    Covered                              na                 na                 na                 na 
         bin datain[1]                                       0          1          -    ZERO                                 na                 na                 na                 na 
-        bin datain[2]                                    5665          1          -    Covered                              na                 na                 na                 na 
+        bin datain[2]                                    5667          1          -    Covered                              na                 na                 na                 na 
         bin datain[3]                                      20          1          -    Covered                              na                 na                 na                 na 
         bin datain[4]                                      73          1          -    Covered                              na                 na                 na                 na 
         bin datain[5]                                       0          1          -    ZERO                                 na                 na                 na                 na 
@@ -1077,7 +1077,7 @@ Covergroup                                             Metric       Goal       B
         bin datain[29]                                      8          1          -    Covered                              na                 na                 na                 na 
         bin datain[30]                                      8          1          -    Covered                              na                 na                 na                 na 
         bin datain[31]                                      4          1          -    Covered                              na                 na                 na                 na 
-        bin datain[32]                                   8279          1          -    Covered                              na                 na                 na                 na 
+        bin datain[32]                                   8293          1          -    Covered                              na                 na                 na                 na 
         bin datain[33]                                      0          1          -    ZERO                                 na                 na                 na                 na 
         bin datain[34]                                      4          1          -    Covered                              na                 na                 na                 na 
         bin datain[35]                                      8          1          -    Covered                              na                 na                 na                 na 
@@ -1173,11 +1173,11 @@ Covergroup                                             Metric       Goal       B
         bin datain[125]                                     8          1          -    Covered                              na                 na                 na                 na 
         bin datain[126]                                     4          1          -    Covered                              na                 na                 na                 na 
         bin datain[127]                                     8          1          -    Covered                              na                 na                 na                 na 
-    Coverpoint DataOut                                 89.84%        100          -    Uncovered                         3.2KB                96B               856B        10100250 ns 
+    Coverpoint DataOut                                 89.84%        100          -    Uncovered                         3.2KB                96B               856B        10110250 ns 
         covered/total bins:                               115        128          -                                      na                 na                 na                 na 
         missing/total bins:                                13        128          -                                      na                 na                 na                 na 
         % Hit:                                         89.84%        100          -                                      na                 na                 na                 na 
-        bin dataout[0]                                  19687          1          -    Covered                              na                 na                 na                 na 
+        bin dataout[0]                                  19698          1          -    Covered                              na                 na                 na                 na 
         bin dataout[1]                                      8          1          -    Covered                              na                 na                 na                 na 
         bin dataout[2]                                      1          1          -    Covered                              na                 na                 na                 na 
         bin dataout[3]                                      4          1          -    Covered                              na                 na                 na                 na 
@@ -1194,7 +1194,7 @@ Covergroup                                             Metric       Goal       B
         bin dataout[14]                                     0          1          -    ZERO                                 na                 na                 na                 na 
         bin dataout[15]                                     1          1          -    Covered                              na                 na                 na                 na 
         bin dataout[16]                                     1          1          -    Covered                              na                 na                 na                 na 
-        bin dataout[17]                                     2          1          -    Covered                              na                 na                 na                 na 
+        bin dataout[17]                                     4          1          -    Covered                              na                 na                 na                 na 
         bin dataout[18]                                     1          1          -    Covered                              na                 na                 na                 na 
         bin dataout[19]                                     4          1          -    Covered                              na                 na                 na                 na 
         bin dataout[20]                                     0          1          -    ZERO                                 na                 na                 na                 na 
@@ -1210,14 +1210,14 @@ Covergroup                                             Metric       Goal       B
         bin dataout[30]                                     3          1          -    Covered                              na                 na                 na                 na 
         bin dataout[31]                                     4          1          -    Covered                              na                 na                 na                 na 
         bin dataout[32]                                     5          1          -    Covered                              na                 na                 na                 na 
-        bin dataout[33]                                     1          1          -    Covered                              na                 na                 na                 na 
+        bin dataout[33]                                     6          1          -    Covered                              na                 na                 na                 na 
         bin dataout[34]                                     1          1          -    Covered                              na                 na                 na                 na 
         bin dataout[35]                                     3          1          -    Covered                              na                 na                 na                 na 
         bin dataout[36]                                     3          1          -    Covered                              na                 na                 na                 na 
         bin dataout[37]                                     1          1          -    Covered                              na                 na                 na                 na 
         bin dataout[38]                                     0          1          -    ZERO                                 na                 na                 na                 na 
         bin dataout[39]                                     2          1          -    Covered                              na                 na                 na                 na 
-        bin dataout[40]                                     1          1          -    Covered                              na                 na                 na                 na 
+        bin dataout[40]                                     3          1          -    Covered                              na                 na                 na                 na 
         bin dataout[41]                                     1          1          -    Covered                              na                 na                 na                 na 
         bin dataout[42]                                     2          1          -    Covered                              na                 na                 na                 na 
         bin dataout[43]                                     0          1          -    ZERO                                 na                 na                 na                 na 
@@ -1309,45 +1309,45 @@ Covergroup                                             Metric       Goal       B
         covered/total bins:                                 2          2          -                                      na                 na                 na                 na 
         missing/total bins:                                 0          2          -                                      na                 na                 na                 na 
         % Hit:                                        100.00%        100          -                                      na                 na                 na                 na 
-        bin txz                                          1401          1          -    Covered                              na                 na                 na                 na 
-        bin tx1                                         18800          1          -    Covered                              na                 na                 na                 na 
+        bin txz                                          1396          1          -    Covered                              na                 na                 na                 na 
+        bin tx1                                         18825          1          -    Covered                              na                 na                 na                 na 
     Coverpoint TxEN                                    50.00%        100          -    Uncovered                          204B               136B               136B             250 ns 
         covered/total bins:                                 1          2          -                                      na                 na                 na                 na 
         missing/total bins:                                 1          2          -                                      na                 na                 na                 na 
         % Hit:                                         50.00%        100          -                                      na                 na                 na                 na 
         bin txnen                                           0          1          -    ZERO                                 na                 na                 na                 na 
-        bin txen                                        20201          1          -    Covered                              na                 na                 na                 na 
+        bin txen                                        20221          1          -    Covered                              na                 na                 na                 na 
     Coverpoint Tx_Done                                100.00%        100          -    Covered                            204B               136B               136B             250 ns 
         covered/total bins:                                 2          2          -                                      na                 na                 na                 na 
         missing/total bins:                                 0          2          -                                      na                 na                 na                 na 
         % Hit:                                        100.00%        100          -                                      na                 na                 na                 na 
-        bin ndone                                        6798          1          -    Covered                              na                 na                 na                 na 
-        bin done                                        13403          1          -    Covered                              na                 na                 na                 na 
+        bin ndone                                        6759          1          -    Covered                              na                 na                 na                 na 
+        bin done                                        13462          1          -    Covered                              na                 na                 na                 na 
     Coverpoint Rx                                     100.00%        100          -    Covered                            204B               136B               136B             250 ns 
         covered/total bins:                                 2          2          -                                      na                 na                 na                 na 
         missing/total bins:                                 0          2          -                                      na                 na                 na                 na 
         % Hit:                                        100.00%        100          -                                      na                 na                 na                 na 
         bin rxz                                          2921          1          -    Covered                              na                 na                 na                 na 
-        bin rx1                                         17280          1          -    Covered                              na                 na                 na                 na 
+        bin rx1                                         17300          1          -    Covered                              na                 na                 na                 na 
     Coverpoint RxEN                                    50.00%        100          -    Uncovered                          204B               136B               136B             250 ns 
         covered/total bins:                                 1          2          -                                      na                 na                 na                 na 
         missing/total bins:                                 1          2          -                                      na                 na                 na                 na 
         % Hit:                                         50.00%        100          -                                      na                 na                 na                 na 
         bin rxnen                                           0          1          -    ZERO                                 na                 na                 na                 na 
-        bin rxen                                        20201          1          -    Covered                              na                 na                 na                 na 
+        bin rxen                                        20221          1          -    Covered                              na                 na                 na                 na 
     Coverpoint Rx_Ready                               100.00%        100          -    Covered                            204B               136B               136B             250 ns 
         covered/total bins:                                 2          2          -                                      na                 na                 na                 na 
         missing/total bins:                                 0          2          -                                      na                 na                 na                 na 
         % Hit:                                        100.00%        100          -                                      na                 na                 na                 na 
-        bin nready                                      19175          1          -    Covered                              na                 na                 na                 na 
-        bin ready                                        1026          1          -    Covered                              na                 na                 na                 na 
+        bin nready                                      19181          1          -    Covered                              na                 na                 na                 na 
+        bin ready                                        1040          1          -    Covered                              na                 na                 na                 na 
     Coverpoint Rx_ValidFrame                          100.00%        100          -    Covered                            204B               136B               136B             250 ns 
         covered/total bins:                                 2          2          -                                      na                 na                 na                 na 
         missing/total bins:                                 0          2          -                                      na                 na                 na                 na 
         % Hit:                                        100.00%        100          -                                      na                 na                 na                 na 
         bin valid                                        5655          1          -    Covered                              na                 na                 na                 na 
-        bin invalid                                     14546          1          -    Covered                              na                 na                 na                 na 
-    Coverpoint Rx_Data                                100.00%        100          -    Covered                            340B                96B               856B        10100250 ns 
+        bin invalid                                     14566          1          -    Covered                              na                 na                 na                 na 
+    Coverpoint Rx_Data                                100.00%        100          -    Covered                            340B                96B               856B        10110250 ns 
         covered/total bins:                                 8          8          -                                      na                 na                 na                 na 
         missing/total bins:                                 0          8          -                                      na                 na                 na                 na 
         % Hit:                                        100.00%        100          -                                      na                 na                 na                 na 
@@ -1363,21 +1363,21 @@ Covergroup                                             Metric       Goal       B
         covered/total bins:                                 2          2          -                                      na                 na                 na                 na 
         missing/total bins:                                 0          2          -                                      na                 na                 na                 na 
         % Hit:                                        100.00%        100          -                                      na                 na                 na                 na 
-        bin abort                                          62          1          -    Covered                              na                 na                 na                 na 
-        bin no_abort                                    20139          1          -    Covered                              na                 na                 na                 na 
+        bin abort                                          66          1          -    Covered                              na                 na                 na                 na 
+        bin no_abort                                    20155          1          -    Covered                              na                 na                 na                 na 
     Coverpoint Rx_WrBuff                              100.00%        100          -    Covered                            204B               136B               136B             250 ns 
         covered/total bins:                                 2          2          -                                      na                 na                 na                 na 
         missing/total bins:                                 0          2          -                                      na                 na                 na                 na 
         % Hit:                                        100.00%        100          -                                      na                 na                 na                 na 
         bin write                                         687          1          -    Covered                              na                 na                 na                 na 
-        bin no_write                                    19514          1          -    Covered                              na                 na                 na                 na 
+        bin no_write                                    19534          1          -    Covered                              na                 na                 na                 na 
     Coverpoint Rx_EoF                                 100.00%        100          -    Covered                            204B               136B               136B             250 ns 
         covered/total bins:                                 2          2          -                                      na                 na                 na                 na 
         missing/total bins:                                 0          2          -                                      na                 na                 na                 na 
         % Hit:                                        100.00%        100          -                                      na                 na                 na                 na 
         bin eof                                             9          1          -    Covered                              na                 na                 na                 na 
-        bin not_eof                                     20192          1          -    Covered                              na                 na                 na                 na 
-    Coverpoint Rx_FrameSize                            12.50%        100          -    Uncovered                          340B                96B               856B        10100250 ns 
+        bin not_eof                                     20212          1          -    Covered                              na                 na                 na                 na 
+    Coverpoint Rx_FrameSize                            12.50%        100          -    Uncovered                          340B                96B               856B        10110250 ns 
         covered/total bins:                                 1          8          -                                      na                 na                 na                 na 
         missing/total bins:                                 7          8          -                                      na                 na                 na                 na 
         % Hit:                                         12.50%        100          -                                      na                 na                 na                 na 
@@ -1393,25 +1393,25 @@ Covergroup                                             Metric       Goal       B
         covered/total bins:                                 2          2          -                                      na                 na                 na                 na 
         missing/total bins:                                 0          2          -                                      na                 na                 na                 na 
         % Hit:                                        100.00%        100          -                                      na                 na                 na                 na 
-        bin overflow                                      548          1          -    Covered                              na                 na                 na                 na 
-        bin no_overflow                                 19653          1          -    Covered                              na                 na                 na                 na 
+        bin overflow                                      552          1          -    Covered                              na                 na                 na                 na 
+        bin no_overflow                                 19669          1          -    Covered                              na                 na                 na                 na 
     Coverpoint Rx_FCSerr                               50.00%        100          -    Uncovered                          204B               136B               136B             250 ns 
         covered/total bins:                                 1          2          -                                      na                 na                 na                 na 
         missing/total bins:                                 1          2          -                                      na                 na                 na                 na 
         % Hit:                                         50.00%        100          -                                      na                 na                 na                 na 
         bin err                                             0          1          -    ZERO                                 na                 na                 na                 na 
-        bin no_err                                      20201          1          -    Covered                              na                 na                 na                 na 
+        bin no_err                                      20221          1          -    Covered                              na                 na                 na                 na 
     Coverpoint Rx_FCSen                               100.00%        100          -    Covered                            204B               136B               136B             250 ns 
         covered/total bins:                                 2          2          -                                      na                 na                 na                 na 
         missing/total bins:                                 0          2          -                                      na                 na                 na                 na 
         % Hit:                                        100.00%        100          -                                      na                 na                 na                 na 
-        bin enabled                                     17494          1          -    Covered                              na                 na                 na                 na 
-        bin disabled                                     2707          1          -    Covered                              na                 na                 na                 na 
-    Coverpoint Rx_DataBuffOut                         100.00%        100          -    Covered                            340B                96B               856B        10100250 ns 
+        bin enabled                                     17510          1          -    Covered                              na                 na                 na                 na 
+        bin disabled                                     2711          1          -    Covered                              na                 na                 na                 na 
+    Coverpoint Rx_DataBuffOut                         100.00%        100          -    Covered                            340B                96B               856B        10110250 ns 
         covered/total bins:                                 8          8          -                                      na                 na                 na                 na 
         missing/total bins:                                 0          8          -                                      na                 na                 na                 na 
         % Hit:                                        100.00%        100          -                                      na                 na                 na                 na 
-        bin data[0]                                     19182          1          -    Covered                              na                 na                 na                 na 
+        bin data[0]                                     19188          1          -    Covered                              na                 na                 na                 na 
         bin data[1]                                         4          1          -    Covered                              na                 na                 na                 na 
         bin data[2]                                         2          1          -    Covered                              na                 na                 na                 na 
         bin data[3]                                         8          1          -    Covered                              na                 na                 na                 na 
@@ -1424,135 +1424,135 @@ Covergroup                                             Metric       Goal       B
         missing/total bins:                                 0          2          -                                      na                 na                 na                 na 
         % Hit:                                        100.00%        100          -                                      na                 na                 na                 na 
         bin read                                          507          1          -    Covered                              na                 na                 na                 na 
-        bin no_read                                     19694          1          -    Covered                              na                 na                 na                 na 
+        bin no_read                                     19714          1          -    Covered                              na                 na                 na                 na 
     Coverpoint Rx_NewByte                             100.00%        100          -    Covered                            204B               136B               136B             250 ns 
         covered/total bins:                                 2          2          -                                      na                 na                 na                 na 
         missing/total bins:                                 0          2          -                                      na                 na                 na                 na 
         % Hit:                                        100.00%        100          -                                      na                 na                 na                 na 
         bin newbyte                                       691          1          -    Covered                              na                 na                 na                 na 
-        bin none                                        19510          1          -    Covered                              na                 na                 na                 na 
+        bin none                                        19530          1          -    Covered                              na                 na                 na                 na 
     Coverpoint Rx_StartZeroDetect                     100.00%        100          -    Covered                            204B               136B               136B             250 ns 
         covered/total bins:                                 2          2          -                                      na                 na                 na                 na 
         missing/total bins:                                 0          2          -                                      na                 na                 na                 na 
         % Hit:                                        100.00%        100          -                                      na                 na                 na                 na 
         bin start                                           9          1          -    Covered                              na                 na                 na                 na 
-        bin no_start                                    20192          1          -    Covered                              na                 na                 na                 na 
+        bin no_start                                    20212          1          -    Covered                              na                 na                 na                 na 
     Coverpoint Rx_FlagDetect                          100.00%        100          -    Covered                            204B               136B               136B             250 ns 
         covered/total bins:                                 2          2          -                                      na                 na                 na                 na 
         missing/total bins:                                 0          2          -                                      na                 na                 na                 na 
         % Hit:                                        100.00%        100          -                                      na                 na                 na                 na 
         bin flag                                           16          1          -    Covered                              na                 na                 na                 na 
-        bin no_flag                                     20185          1          -    Covered                              na                 na                 na                 na 
+        bin no_flag                                     20205          1          -    Covered                              na                 na                 na                 na 
     Coverpoint Rx_AbortDetect                         100.00%        100          -    Covered                            204B               136B               136B             250 ns 
         covered/total bins:                                 2          2          -                                      na                 na                 na                 na 
         missing/total bins:                                 0          2          -                                      na                 na                 na                 na 
         % Hit:                                        100.00%        100          -                                      na                 na                 na                 na 
         bin abort                                           9          1          -    Covered                              na                 na                 na                 na 
-        bin no_abort                                    20192          1          -    Covered                              na                 na                 na                 na 
+        bin no_abort                                    20212          1          -    Covered                              na                 na                 na                 na 
     Coverpoint Rx_FrameError                           50.00%        100          -    Uncovered                          204B               136B               136B             250 ns 
         covered/total bins:                                 1          2          -                                      na                 na                 na                 na 
         missing/total bins:                                 1          2          -                                      na                 na                 na                 na 
         % Hit:                                         50.00%        100          -                                      na                 na                 na                 na 
         bin error                                           0          1          -    ZERO                                 na                 na                 na                 na 
-        bin no_error                                    20201          1          -    Covered                              na                 na                 na                 na 
+        bin no_error                                    20221          1          -    Covered                              na                 na                 na                 na 
     Coverpoint Rx_Drop                                 50.00%        100          -    Uncovered                          204B               136B               136B             250 ns 
         covered/total bins:                                 1          2          -                                      na                 na                 na                 na 
         missing/total bins:                                 1          2          -                                      na                 na                 na                 na 
         % Hit:                                         50.00%        100          -                                      na                 na                 na                 na 
         bin drop                                            0          1          -    ZERO                                 na                 na                 na                 na 
-        bin keep                                        20201          1          -    Covered                              na                 na                 na                 na 
+        bin keep                                        20221          1          -    Covered                              na                 na                 na                 na 
     Coverpoint Rx_StartFCS                            100.00%        100          -    Covered                            204B               136B               136B             250 ns 
         covered/total bins:                                 2          2          -                                      na                 na                 na                 na 
         missing/total bins:                                 0          2          -                                      na                 na                 na                 na 
         % Hit:                                        100.00%        100          -                                      na                 na                 na                 na 
         bin start                                           9          1          -    Covered                              na                 na                 na                 na 
-        bin no_start                                    20192          1          -    Covered                              na                 na                 na                 na 
+        bin no_start                                    20212          1          -    Covered                              na                 na                 na                 na 
     Coverpoint Rx_StopFCS                             100.00%        100          -    Covered                            204B               136B               136B             250 ns 
         covered/total bins:                                 2          2          -                                      na                 na                 na                 na 
         missing/total bins:                                 0          2          -                                      na                 na                 na                 na 
         % Hit:                                        100.00%        100          -                                      na                 na                 na                 na 
         bin stop                                            7          1          -    Covered                              na                 na                 na                 na 
-        bin no_stop                                     20194          1          -    Covered                              na                 na                 na                 na 
+        bin no_stop                                     20214          1          -    Covered                              na                 na                 na                 na 
     Coverpoint RxD                                    100.00%        100          -    Covered                            204B               136B               136B             250 ns 
         covered/total bins:                                 2          2          -                                      na                 na                 na                 na 
         missing/total bins:                                 0          2          -                                      na                 na                 na                 na 
         % Hit:                                        100.00%        100          -                                      na                 na                 na                 na 
-        bin one                                         17269          1          -    Covered                              na                 na                 na                 na 
+        bin one                                         17289          1          -    Covered                              na                 na                 na                 na 
         bin zero                                         2932          1          -    Covered                              na                 na                 na                 na 
     Coverpoint ZeroDetect                             100.00%        100          -    Covered                            204B               136B               136B             250 ns 
         covered/total bins:                                 2          2          -                                      na                 na                 na                 na 
         missing/total bins:                                 0          2          -                                      na                 na                 na                 na 
         % Hit:                                        100.00%        100          -                                      na                 na                 na                 na 
         bin detect                                         91          1          -    Covered                              na                 na                 na                 na 
-        bin none                                        20110          1          -    Covered                              na                 na                 na                 na 
+        bin none                                        20130          1          -    Covered                              na                 na                 na                 na 
     Coverpoint Tx_AbortFrame                          100.00%        100          -    Covered                            204B               136B               136B             250 ns 
         covered/total bins:                                 2          2          -                                      na                 na                 na                 na 
         missing/total bins:                                 0          2          -                                      na                 na                 na                 na 
         % Hit:                                        100.00%        100          -                                      na                 na                 na                 na 
         bin abort                                           3          1          -    Covered                              na                 na                 na                 na 
-        bin no_abort                                    20198          1          -    Covered                              na                 na                 na                 na 
+        bin no_abort                                    20218          1          -    Covered                              na                 na                 na                 na 
     Coverpoint Tx_AbortedTrans                        100.00%        100          -    Covered                            204B               136B               136B             250 ns 
         covered/total bins:                                 2          2          -                                      na                 na                 na                 na 
         missing/total bins:                                 0          2          -                                      na                 na                 na                 na 
         % Hit:                                        100.00%        100          -                                      na                 na                 na                 na 
         bin aborted                                        72          1          -    Covered                              na                 na                 na                 na 
-        bin not_aborted                                 20129          1          -    Covered                              na                 na                 na                 na 
+        bin not_aborted                                 20149          1          -    Covered                              na                 na                 na                 na 
     Coverpoint Tx_DataAvail                           100.00%        100          -    Covered                            204B               136B               136B             250 ns 
         covered/total bins:                                 2          2          -                                      na                 na                 na                 na 
         missing/total bins:                                 0          2          -                                      na                 na                 na                 na 
         % Hit:                                        100.00%        100          -                                      na                 na                 na                 na 
-        bin avail                                        5409          1          -    Covered                              na                 na                 na                 na 
-        bin not_avail                                   14792          1          -    Covered                              na                 na                 na                 na 
+        bin avail                                        5370          1          -    Covered                              na                 na                 na                 na 
+        bin not_avail                                   14851          1          -    Covered                              na                 na                 na                 na 
     Coverpoint Tx_ValidFrame                          100.00%        100          -    Covered                            204B               136B               136B             250 ns 
         covered/total bins:                                 2          2          -                                      na                 na                 na                 na 
         missing/total bins:                                 0          2          -                                      na                 na                 na                 na 
         % Hit:                                        100.00%        100          -                                      na                 na                 na                 na 
-        bin invalid                                     17509          1          -    Covered                              na                 na                 na                 na 
-        bin valid                                        2692          1          -    Covered                              na                 na                 na                 na 
+        bin invalid                                     17527          1          -    Covered                              na                 na                 na                 na 
+        bin valid                                        2694          1          -    Covered                              na                 na                 na                 na 
     Coverpoint Tx_WriteFCS                            100.00%        100          -    Covered                            204B               136B               136B             250 ns 
         covered/total bins:                                 2          2          -                                      na                 na                 na                 na 
         missing/total bins:                                 0          2          -                                      na                 na                 na                 na 
         % Hit:                                        100.00%        100          -                                      na                 na                 na                 na 
-        bin no_write                                    20165          1          -    Covered                              na                 na                 na                 na 
-        bin write                                          36          1          -    Covered                              na                 na                 na                 na 
+        bin no_write                                    20180          1          -    Covered                              na                 na                 na                 na 
+        bin write                                          41          1          -    Covered                              na                 na                 na                 na 
     Coverpoint Tx_InitZero                            100.00%        100          -    Covered                            204B               136B               136B             250 ns 
         covered/total bins:                                 2          2          -                                      na                 na                 na                 na 
         missing/total bins:                                 0          2          -                                      na                 na                 na                 na 
         % Hit:                                        100.00%        100          -                                      na                 na                 na                 na 
-        bin no_init                                     20192          1          -    Covered                              na                 na                 na                 na 
+        bin no_init                                     20212          1          -    Covered                              na                 na                 na                 na 
         bin init                                            9          1          -    Covered                              na                 na                 na                 na 
     Coverpoint Tx_StartFCS                            100.00%        100          -    Covered                            204B               136B               136B             250 ns 
         covered/total bins:                                 2          2          -                                      na                 na                 na                 na 
         missing/total bins:                                 0          2          -                                      na                 na                 na                 na 
         % Hit:                                        100.00%        100          -                                      na                 na                 na                 na 
-        bin no_start                                    20192          1          -    Covered                              na                 na                 na                 na 
+        bin no_start                                    20212          1          -    Covered                              na                 na                 na                 na 
         bin start                                           9          1          -    Covered                              na                 na                 na                 na 
     Coverpoint Tx_RdBuff                              100.00%        100          -    Covered                            204B               136B               136B             250 ns 
         covered/total bins:                                 2          2          -                                      na                 na                 na                 na 
         missing/total bins:                                 0          2          -                                      na                 na                 na                 na 
         % Hit:                                        100.00%        100          -                                      na                 na                 na                 na 
-        bin no_read                                     19891          1          -    Covered                              na                 na                 na                 na 
-        bin read                                          310          1          -    Covered                              na                 na                 na                 na 
+        bin no_read                                     19915          1          -    Covered                              na                 na                 na                 na 
+        bin read                                          306          1          -    Covered                              na                 na                 na                 na 
     Coverpoint Tx_NewByte                             100.00%        100          -    Covered                            204B               136B               136B             250 ns 
         covered/total bins:                                 2          2          -                                      na                 na                 na                 na 
         missing/total bins:                                 0          2          -                                      na                 na                 na                 na 
         % Hit:                                        100.00%        100          -                                      na                 na                 na                 na 
-        bin nob                                         19872          1          -    Covered                              na                 na                 na                 na 
-        bin newb                                          329          1          -    Covered                              na                 na                 na                 na 
+        bin nob                                         19891          1          -    Covered                              na                 na                 na                 na 
+        bin newb                                          330          1          -    Covered                              na                 na                 na                 na 
     Coverpoint Tx_FCSDone                             100.00%        100          -    Covered                            204B               136B               136B             250 ns 
         covered/total bins:                                 2          2          -                                      na                 na                 na                 na 
         missing/total bins:                                 0          2          -                                      na                 na                 na                 na 
         % Hit:                                        100.00%        100          -                                      na                 na                 na                 na 
-        bin not_done                                    17452          1          -    Covered                              na                 na                 na                 na 
-        bin done                                         2749          1          -    Covered                              na                 na                 na                 na 
-    Coverpoint Tx_Data                                 75.00%        100          -    Uncovered                          340B                72B               832B        10100250 ns 
+        bin not_done                                    17471          1          -    Covered                              na                 na                 na                 na 
+        bin done                                         2750          1          -    Covered                              na                 na                 na                 na 
+    Coverpoint Tx_Data                                 75.00%        100          -    Uncovered                          340B                72B               832B        10110250 ns 
         covered/total bins:                                 6          8          -                                      na                 na                 na                 na 
         missing/total bins:                                 2          8          -                                      na                 na                 na                 na 
         % Hit:                                         75.00%        100          -                                      na                 na                 na                 na 
-        bin data[0]                                       151          1          -    Covered                              na                 na                 na                 na 
+        bin data[0]                                       171          1          -    Covered                              na                 na                 na                 na 
         bin data[1]                                         0          1          -    ZERO                                 na                 na                 na                 na 
         bin data[2]                                        24          1          -    Covered                              na                 na                 na                 na 
-        bin data[3]                                        41          1          -    Covered                              na                 na                 na                 na 
+        bin data[3]                                        33          1          -    Covered                              na                 na                 na                 na 
         bin data[4]                                         8          1          -    Covered                              na                 na                 na                 na 
         bin data[5]                                         0          1          -    ZERO                                 na                 na                 na                 na 
         bin data[6]                                         8          1          -    Covered                              na                 na                 na                 na 
@@ -1561,13 +1561,13 @@ Covergroup                                             Metric       Goal       B
         covered/total bins:                                 2          2          -                                      na                 na                 na                 na 
         missing/total bins:                                 0          2          -                                      na                 na                 na                 na 
         % Hit:                                        100.00%        100          -                                      na                 na                 na                 na 
-        bin not_full                                    20195          1          -    Covered                              na                 na                 na                 na 
+        bin not_full                                    20215          1          -    Covered                              na                 na                 na                 na 
         bin full                                            6          1          -    Covered                              na                 na                 na                 na 
-    Coverpoint Tx_FrameSize                            37.50%        100          -    Uncovered                          340B                96B               856B        10100250 ns 
+    Coverpoint Tx_FrameSize                            37.50%        100          -    Uncovered                          340B                96B               856B        10110250 ns 
         covered/total bins:                                 3          8          -                                      na                 na                 na                 na 
         missing/total bins:                                 5          8          -                                      na                 na                 na                 na 
         % Hit:                                         37.50%        100          -                                      na                 na                 na                 na 
-        bin size[0]                                     10985          1          -    Covered                              na                 na                 na                 na 
+        bin size[0]                                     11003          1          -    Covered                              na                 na                 na                 na 
         bin size[1]                                         0          1          -    ZERO                                 na                 na                 na                 na 
         bin size[2]                                         0          1          -    ZERO                                 na                 na                 na                 na 
         bin size[3]                                      2078          1          -    Covered                              na                 na                 na                 na 
@@ -1575,14 +1575,14 @@ Covergroup                                             Metric       Goal       B
         bin size[5]                                         0          1          -    ZERO                                 na                 na                 na                 na 
         bin size[6]                                         0          1          -    ZERO                                 na                 na                 na                 na 
         bin size[7]                                         0          1          -    ZERO                                 na                 na                 na                 na 
-    Coverpoint Tx_DataOutBuff                          75.00%        100          -    Uncovered                          340B                96B               856B        10100250 ns 
+    Coverpoint Tx_DataOutBuff                          75.00%        100          -    Uncovered                          340B                96B               856B        10110250 ns 
         covered/total bins:                                 6          8          -                                      na                 na                 na                 na 
         missing/total bins:                                 2          8          -                                      na                 na                 na                 na 
         % Hit:                                         75.00%        100          -                                      na                 na                 na                 na 
-        bin data[0]                                     14783          1          -    Covered                              na                 na                 na                 na 
+        bin data[0]                                     14842          1          -    Covered                              na                 na                 na                 na 
         bin data[1]                                         0          1          -    ZERO                                 na                 na                 na                 na 
         bin data[2]                                        24          1          -    Covered                              na                 na                 na                 na 
-        bin data[3]                                        41          1          -    Covered                              na                 na                 na                 na 
+        bin data[3]                                        33          1          -    Covered                              na                 na                 na                 na 
         bin data[4]                                         8          1          -    Covered                              na                 na                 na                 na 
         bin data[5]                                         0          1          -    ZERO                                 na                 na                 na                 na 
         bin data[6]                                         8          1          -    Covered                              na                 na                 na                 na 
@@ -1591,19 +1591,19 @@ Covergroup                                             Metric       Goal       B
         covered/total bins:                                 2          2          -                                      na                 na                 na                 na 
         missing/total bins:                                 0          2          -                                      na                 na                 na                 na 
         % Hit:                                        100.00%        100          -                                      na                 na                 na                 na 
-        bin no_write                                    19852          1          -    Covered                              na                 na                 na                 na 
+        bin no_write                                    19872          1          -    Covered                              na                 na                 na                 na 
         bin write                                         349          1          -    Covered                              na                 na                 na                 na 
     Coverpoint Tx_Enable                              100.00%        100          -    Covered                            204B               136B               136B             250 ns 
         covered/total bins:                                 2          2          -                                      na                 na                 na                 na 
         missing/total bins:                                 0          2          -                                      na                 na                 na                 na 
         % Hit:                                        100.00%        100          -                                      na                 na                 na                 na 
-        bin txdis                                       20192          1          -    Covered                              na                 na                 na                 na 
+        bin txdis                                       20212          1          -    Covered                              na                 na                 na                 na 
         bin txen                                            9          1          -    Covered                              na                 na                 na                 na 
-    Coverpoint Tx_DataInBuff                           75.00%        100          -    Uncovered                          340B                96B               856B        10100250 ns 
+    Coverpoint Tx_DataInBuff                           75.00%        100          -    Uncovered                          340B                96B               856B        10110250 ns 
         covered/total bins:                                 6          8          -                                      na                 na                 na                 na 
         missing/total bins:                                 2          8          -                                      na                 na                 na                 na 
         % Hit:                                         75.00%        100          -                                      na                 na                 na                 na 
-        bin data[0]                                     19853          1          -    Covered                              na                 na                 na                 na 
+        bin data[0]                                     19873          1          -    Covered                              na                 na                 na                 na 
         bin data[1]                                         0          1          -    ZERO                                 na                 na                 na                 na 
         bin data[2]                                         3          1          -    Covered                              na                 na                 na                 na 
         bin data[3]                                         5          1          -    Covered                              na                 na                 na                 na 
@@ -1616,5 +1616,5 @@ TOTAL COVERGROUP COVERAGE: 89.18%  COVERGROUP TYPES: 1
 Total Coverage By Instance (filtered view): 89.18%
 
 
-COVERGROUP MEMORY USAGE: Total 64.4KB, Peak 64.4KB at time 10100250 ns for total 49 coverpoints/crosses.
-DYNAMIC OBJECTS MEMORY USAGE: Total Memory 480B and Peak Memory 600B used at time 9040500 ns for total 8 dynamic objects.
+COVERGROUP MEMORY USAGE: Total 64.4KB, Peak 64.4KB at time 10110250 ns for total 49 coverpoints/crosses.
+DYNAMIC OBJECTS MEMORY USAGE: Total Memory 448B and Peak Memory 568B used at time 9050500 ns for total 8 dynamic objects.
