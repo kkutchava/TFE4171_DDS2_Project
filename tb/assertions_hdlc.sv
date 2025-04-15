@@ -90,13 +90,13 @@ module assertions_hdlc (
   end
 
   //13. When receiving more than 128 bytes, Rx Overflow should be asserted.
-  property RX_Overflow;
+  property RX_Overflow_prop;
     @(posedge Clk) disable iff (!Rst || !Rx_ValidFrame)
     //Rx_ValidFrame == 0 ##1 Rx_ValidFrame == 1 ##0 Rx_NewByte == 0 ##1 Rx_ValidFrame == 1 [->129] |=> $rose(Rx_Overflow)
     $rose(Rx_ValidFrame) ##0 ($rose(Rx_NewByte) [->129]) |=> $rose(Rx_Overflow)
   endproperty
 
-  RX_Overflow_Assert : assert property (RX_Overflow) begin
+  RX_Overflow_Assert : assert property (RX_Overflow_prop) begin
     $display("PASS: RX_Overflow detected afrer more than 128 bytes received");
   end else begin
     $error("RX_Overflow did not go high after receiving more than 128 bytes");
@@ -109,25 +109,24 @@ module assertions_hdlc (
   always_ff @(posedge Clk or negedge Rst) begin
     if (!Rst) begin
       byte_counter <= 8'd0;
-    end else if (Rx_EoF) begin
+    end else if ($fell(Rx_EoF)) begin
       byte_counter <= 8'd0; // Reset the counter when not in a valid frame
     end else if ($rose(Rx_NewByte)) begin
       byte_counter <= byte_counter + 1; // Increment the counter on each new byte
       $display("byte_counter %0d", byte_counter);
     end
-    #0;
   end
 
   // 14. Rx_FrameSize should equal the exact number of bytes received in a frame (max. 126 bytes).
   property RX_FrameSize_Exact;
     @(posedge Clk) disable iff (!Rst)
-    $rose(Rx_EoF) and !Rx_FrameError |=> (Rx_FrameSize == byte_counter);
+    ($rose(Rx_EoF) and !Rx_FrameError and !Rx_Overflow) |-> ##1 (Rx_FrameSize == (byte_counter-2));
   endproperty
 
   RX_FrameSize_Exact_Assert : assert property (RX_FrameSize_Exact) begin
     $display("PASS: Rx_FrameSize matches the exact number of bytes received.");
   end else begin
-    $error("FAIL: Rx_FrameSize does not match the exact number of bytes received. Expected: %0d, Got: %0d", byte_counter, Rx_FrameSize);
+    $error("FAIL: Rx_FrameSize does not match the exact number of bytes received. Expected: %0d, Got: %0d", byte_counter-2, Rx_FrameSize);
     ErrCntAssertions++;
   end
 
