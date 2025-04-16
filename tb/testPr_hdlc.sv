@@ -58,7 +58,7 @@ program testPr_hdlc(
     
     ReadAddress(3'h3, ReadData);
       assert (ReadData === 8'h00)
-        $display("PASS. Rx_Buff has correct data");
+        $display("PASS. Rx_Buff has correct data when abort");
         else $error("Rx data buffer is not zero after abort: Got %h", ReadData);
 
   endtask
@@ -82,7 +82,7 @@ program testPr_hdlc(
       wait(uin_hdlc.Rx_Ready); //Check if needed 
       ReadAddress(3'h3, ReadData);
       assert (ReadData === data[i])
-        $display("PASS. Rx_Buff has correct data");
+        $display("PASS. Rx_Buff has correct data when normal");
         else $error("Data mismatch at index %0d: Expected %h, Got %h", i, data[i], ReadData);
     end
 
@@ -107,13 +107,36 @@ program testPr_hdlc(
       wait(uin_hdlc.Rx_Ready); //Check if needed 
       ReadAddress(3'h3, ReadData);
       assert (ReadData === data[i])
-        $display("PASS. Rx_Buff has correct data");
+        $display("PASS. Rx_Buff has correct data when overflow");
         else $error("Data mismatch at index %0d: Expected %h, Got %h", i, data[i], ReadData);
     end
   
   endtask
 
+  //2. Attempting to read RX buffer after frame error or dropped frame should result in zeros.
+  task VerifyDrop(logic [127:0][7:0] data, int Size);
+    logic [7:0] ReadData;
+    WriteAddress(2, 8'b0000_0010); //drop the frame
+    @(posedge uin_hdlc.Clk);
+    ReadAddress(3'h3, ReadData); //read RX buffer
+    assert (ReadData === 8'h00) begin
+      $display("PASS. Rx_Buff has correct data when drop");
+    end else  begin
+      $error("Rx data buffer is not zero after drop: Got %h", ReadData);
+    end
+  endtask
 
+  task VerifyNonByteAligned(logic [127:0][7:0] data, int Size);
+    logic [7:0] ReadData;
+
+    ReadAddress(3, ReadData);
+	  assert (ReadData == 8'h00) begin
+      $display("PASS: Rx_Buff has correct data when non byte aligned");
+    end
+	  else begin
+	    $error("FAIL: after non byte align we dont have 0s");
+    end
+  endtask
 
   /****************************************************************************
    *                                                                          *
@@ -187,7 +210,7 @@ program testPr_hdlc(
     if (state == WAITING_FOR_FLAG) begin
       //$display("INSIDE THE WAITING_FOR_FLAG");
       if (my_curr == STARTEND_FLAG) begin
-        assert_start_flag: assert(1); //5. starts of frame beh
+        assert_start_flag: assert(1); //5. implicitly asserted 
         state = RECEIVING;
         $display("%t: TX Monitor: Going to state %s", $time, state.name());
         my_curr_size = 0;
@@ -222,7 +245,8 @@ program testPr_hdlc(
         $display("%t: TX Monitor: Going from ENDFRAME to state %s", $time, state.name());
       end else begin //NORMAL FLOW
         if (!removed_a_zero && my_curr ==? 8'b011111xx) begin
-          //$display("%t: TX Monitor: Removing a zero", $time);
+          assert_zero_removing : assert(1)
+            $display("%t: TX Monitor: Removing a zero", $time);
           my_curr_size--;
           my_curr <<= 1;
           removed_a_zero = 5;
@@ -239,6 +263,7 @@ program testPr_hdlc(
             my_fcs >>= 8;
           end else begin
             automatic byte expected_data = my_data_q.pop_front();
+            //4. correct TX data
             assert_rx_data: assert (my_curr == expected_data)
             else $error("%t: TX Monitor: Expecting 0x%02x instead of 0x%02x", $time, expected_data, my_curr);
           end
@@ -265,6 +290,8 @@ program testPr_hdlc(
     Receive(126, 0, 0, 0, 1, 0, 0); //Overflow
     Receive( 25, 0, 0, 0, 0, 0, 0); //Normal
     Receive( 47, 0, 0, 0, 0, 0, 0); //Normal
+    Receive( 25, 0, 0, 0, 0, 1, 0); //DROP
+    Receive( 47, 0, 0, 1, 0, 0, 0); //NonByteAligned
 
     repeat (1) begin
       Transmit(0);
@@ -565,6 +592,12 @@ int abort_count = 0;
       //wait(uin_hdlc.Rx_Ready);
       // ReadAddress(2, rx_status_reg);
       // $display("NORMAL: RX STATUS REG contetnt %b", rx_status_reg);
+    end
+    else if (NonByteAligned)
+      VerifyNonByteAligned(ReceiveData, Size);
+    else if (Drop) begin
+      $display("DROP from receive");
+      VerifyDrop(ReceiveData, Size);
     end
     #5000ns;
   endtask
