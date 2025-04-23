@@ -11,7 +11,8 @@
    should verify correct values in some of the Rx registers for:
    - Normal behavior
    - Buffer overflow 
-   - Aborts
+   - Aborts  initial forever begin
+
 
    HINT:
    - A ReadAddress() task is provided, and addresses are documentet in the 
@@ -113,6 +114,7 @@ program testPr_hdlc(
   
   endtask
 
+
   //2. Attempting to read RX buffer after frame error or dropped frame should result in zeros.
   task VerifyDrop(logic [127:0][7:0] data, int Size);
     logic [7:0] ReadData;
@@ -128,6 +130,13 @@ program testPr_hdlc(
 
   task VerifyNonByteAligned(logic [127:0][7:0] data, int Size);
     logic [7:0] ReadData;
+
+    ReadAddress(2, ReadData);
+    assert (ReadData ==? 8'bxxxx_x1xx) //Rx_FrameError bit
+          $display("PASS: Rx status control register contains correct Frame Error Bit");
+    else begin
+        $error("FAIL: Frame error didn't resulted in frame error");
+    end
 
     ReadAddress(3, ReadData);
 	  assert (ReadData == 8'h00) begin
@@ -196,7 +205,7 @@ program testPr_hdlc(
     end
     if (uin_hdlc.WriteEnable && uin_hdlc.Address == ADDR_TX_BUFF) begin
       my_data_q.push_back(uin_hdlc.DataIn[7:0]);
-      $display("%t: Register Monitor: Pushed 0x%02x to data queue", $time, uin_hdlc.DataIn[7:0]);
+      //$display("%t: Register Monitor: Pushed 0x%02x to data queue", $time, uin_hdlc.DataIn[7:0]);
     end
   end
 
@@ -206,7 +215,7 @@ program testPr_hdlc(
     my_curr >>= 1;
     my_curr[7] |= uin_hdlc.Tx;
     if (my_curr_size < 8) my_curr_size ++;
-    if (my_curr != 8'hff) $display("%t: TX Monitor: Current 0x%02x (size: %0d) (removed a zero: %0d) (Tx: %0d) ", $time, my_curr, my_curr_size, removed_a_zero, uin_hdlc.Tx);
+    //if (my_curr != 8'hff) $display("%t: TX Monitor: Current 0x%02x (size: %0d) (removed a zero: %0d) (Tx: %0d) ", $time, my_curr, my_curr_size, removed_a_zero, uin_hdlc.Tx);
     if (state == WAITING_FOR_FLAG) begin
       //$display("INSIDE THE WAITING_FOR_FLAG");
       if (my_curr == STARTEND_FLAG) begin
@@ -264,7 +273,7 @@ program testPr_hdlc(
           end else begin
             automatic byte expected_data = my_data_q.pop_front();
             //4. correct TX data
-            assert_rx_data: assert (my_curr == expected_data)
+            assert_rx_data: assert (my_curr == expected_data) $display("PASS: Correct TX output according to written TX buffer.");
             else $error("%t: TX Monitor: Expecting 0x%02x instead of 0x%02x", $time, expected_data, my_curr);
           end
           my_curr_size = 0;
@@ -293,6 +302,9 @@ program testPr_hdlc(
     Receive( 25, 0, 0, 0, 0, 1, 0); //DROP
     Receive( 47, 0, 0, 1, 0, 0, 0); //NonByteAligned
 
+
+
+
     repeat (1) begin
       Transmit(0);
       //Transmit(1);
@@ -309,6 +321,7 @@ program testPr_hdlc(
       Transmit(64);
       Transmit(64);
       Transmit(126);
+
 
       
     end
@@ -564,6 +577,12 @@ int abort_count = 0;
       MakeRxStimulus(OverflowData, 3);
     end
 
+    //cause the frame error by inserting extra bit to frame
+    if (NonByteAligned) begin
+      @(posedge uin_hdlc.Clk);
+        uin_hdlc.Rx = 1'b1;
+    end
+
     if(Abort) begin
       InsertFlagOrAbort(0);
     end else begin
@@ -578,26 +597,21 @@ int abort_count = 0;
     
     if(Abort) begin
       VerifyAbortReceive(ReceiveData, Size);
-      // ReadAddress(2, rx_status_reg);
-      // $display("ABORT: RX STATUS REG contetnt %b", rx_status_reg);
+
     end
     else if(Overflow) begin
       VerifyOverflowReceive(ReceiveData, Size);
-      //wait(uin_hdlc.Rx_Ready);
-      // ReadAddress(2, rx_status_reg);
-      // $display("OVERFLOW: RX STATUS REG contetnt %b", rx_status_reg);
-    end
-    else if(!SkipRead) begin
-      VerifyNormalReceive(ReceiveData, Size);
-      //wait(uin_hdlc.Rx_Ready);
-      // ReadAddress(2, rx_status_reg);
-      // $display("NORMAL: RX STATUS REG contetnt %b", rx_status_reg);
+
     end
     else if (NonByteAligned)
       VerifyNonByteAligned(ReceiveData, Size);
     else if (Drop) begin
       $display("DROP from receive");
       VerifyDrop(ReceiveData, Size);
+    end
+    else if(!SkipRead) begin
+      VerifyNormalReceive(ReceiveData, Size);
+
     end
     #5000ns;
   endtask
